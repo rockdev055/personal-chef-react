@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Nav from './components/Nav'
+import Households from './components/Households'
+
+const households = [
+  { id: 1, name: "Bosco", address: "7668 Jerde Cliff", monthly_rate: 5761},
+  { id: 2, name: "Lockman", address: "78743 Muller Roads", monthly_rate: 7260},
+  { id: 3, name: "Volkman", address: "9134 Dante Valley", monthly_rate: 1295},
+
+]
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+        <div className="navbar">
+          <Nav />
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="households">
+          <Households households={households} />
+        </div>
       </div>
     );
   }
