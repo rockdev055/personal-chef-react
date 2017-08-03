@@ -27,7 +27,7 @@ class Household extends Component {
   }
 
   render() {
-    const { name } = this.props
+    const { name } = this.state
     return (
       <div>
         <h3>{name}</h3>
