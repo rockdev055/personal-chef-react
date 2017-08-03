@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  width: 100%;
 }
 
 ul {
@@ -8,6 +9,10 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    height: 10%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar-left li {
@@ -39,9 +44,21 @@ li a {
   to { transform: rotate(360deg); }
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.sidebar-wrapper {
+  height: 100%;
 }
 
+.sidebar {
+  float: left;
+  width: 30%;
+  height: 90vh;
+  background: #eee
+}
+
+.household-main {
+  float: left;
+  width: 70%;
+  height: 90vh;
+  background: lightgrey;
+  color: black;
+}
