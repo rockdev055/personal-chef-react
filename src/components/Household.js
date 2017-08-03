@@ -30,7 +30,7 @@ class Household extends Component {
     const { name } = this.props
     return (
       <div>
-        <h3>{this.state.name}</h3>
+        <h3>{name}</h3>
       </div>
     )
 
