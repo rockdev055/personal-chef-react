@@ -5,6 +5,11 @@ const fetchHouseholds = () => {
   return fetch(`${API_URL}/households`).then(res => res.json())
 }
 
+const fetchHousehold = (id) => {
+  return fetch(`${API_URL}/households/${id}`).then(res => res.json())
+}
+
 export default {
-  fetchHouseholds
+  fetchHouseholds,
+  fetchHousehold
 }
