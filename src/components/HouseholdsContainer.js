@@ -20,7 +20,6 @@ class HouseholdsContainer extends Component {
   }
 
   render() {
-    console.log(this.props.match.url)
     return (
       <div className="sidebar-wrapper">
         <div className="sidebar">
