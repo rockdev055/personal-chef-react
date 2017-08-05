@@ -4,10 +4,12 @@ import { connect } from 'react-redux'
 import { signup } from '../redux/modules/Auth/actions'
 
 class Signup extends Component {
-  submit = (values) => {this.props.signup(values)}
+
+  submit = (values) => {
+    this.props.signup({user: values}, this.props.history)
+  }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <h2>Sign up for an Account</h2>
