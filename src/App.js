@@ -3,6 +3,7 @@ import './App.css';
 import Nav from './components/Nav'
 import Home from './components/Home'
 import HouseholdsContainer from './components/HouseholdsContainer'
+import Signup from './components/Signup'
 import {
   BrowserRouter as Router,
   Route,
@@ -18,6 +19,7 @@ class App extends Component {
             <Nav />
             <Route exact path="/" component={Home} />
             <Route path="/households" component={HouseholdsContainer} />
+            <Route path="/signup" component={Signup} />
           </div>
         </Router>
       </div>
