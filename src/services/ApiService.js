@@ -13,6 +13,21 @@ const signup = (data) => {
     .then(user => user)
 }
 
+const refresh = () => {
+  const token = JSON.parse(localStorage.getItem('token'));
+  return fetch(`${API_URL}/auth/refresh`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+  })
+    .then(res => res.json())
+    .then(user => user)
+}
+
 export default {
-  signup
+  signup,
+  refresh
 }
