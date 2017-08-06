@@ -1,4 +1,4 @@
-import ApiService from '../../../services/ApiService'
+import AuthService from '../../../services/AuthService'
 import { reset } from 'redux-form'
 
 export const authenticating = () => ({type: 'AUTHENTICATING'})
@@ -15,7 +15,7 @@ export const logout = (router) => {
 export const authenticate = () => {
   return dispatch => {
     dispatch(authenticating())
-    return ApiService.refresh()
+    return AuthService.refresh()
       .then(currentUser => {
         const { user, token } = currentUser
         localStorage.setItem('token', JSON.stringify(token))
@@ -27,7 +27,7 @@ export const authenticate = () => {
 export const signup = (data, history) => {
   return dispatch => {
     dispatch(authenticating())
-    ApiService.signup(data)
+    AuthService.signup(data)
       .then(currentUser => {
         const { user, token } = currentUser
         localStorage.setItem('token', JSON.stringify(token))
@@ -41,7 +41,7 @@ export const signup = (data, history) => {
 export const login = (params, history) => {
   return dispatch => {
     dispatch(authenticating())
-    ApiService.login(params)
+    AuthService.login(params)
       .then(currentUser => {
         const { user, token } = currentUser
         localStorage.setItem('token', JSON.stringify(token))
