@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import LoginForm from './LoginForm'
+import { login } from '../redux/modules/Auth/actions'
 
 class Login extends Component {
-  submit = (values) => console.log(values)
+  submit = (values) => this.props.login(values, this.props.history)
   
   render() {
     return (
@@ -14,4 +16,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default connect(null, { login })(Login)

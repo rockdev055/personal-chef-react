@@ -37,3 +37,17 @@ export const signup = (data, history) => {
       })
   }
 }
+
+export const login = (params, history) => {
+  return dispatch => {
+    dispatch(authenticating())
+    ApiService.login(params)
+      .then(currentUser => {
+        const { user, token } = currentUser
+        localStorage.setItem('token', JSON.stringify(token))
+        dispatch(setUser(user))
+        dispatch(reset('login'))
+        history.replace('/households')
+      })
+  }
+}

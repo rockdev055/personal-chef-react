@@ -13,6 +13,19 @@ const signup = (data) => {
     .then(user => user)
 }
 
+const login = (data) => {
+  return fetch(`${API_URL}/auth`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(res => res.json())
+    .then(user => user)
+}
+
 const refresh = () => {
   let token = localStorage.getItem('token');
   if (token) {
@@ -32,5 +45,6 @@ const refresh = () => {
 
 export default {
   signup,
-  refresh
+  refresh,
+  login,
 }
