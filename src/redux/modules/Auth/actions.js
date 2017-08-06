@@ -7,6 +7,11 @@ export const setUser = (user) => ({type: 'AUTH_COMPLETE', user})
 
 export const authenticationFailure = (errors) => ({type: 'AUTH_FAILURE', errors})
 
+export const logout = (router) => {
+  localStorage.removeItem('token')
+  return { type: 'LOGOUT' }
+}
+
 export const authenticate = () => {
   return dispatch => {
     dispatch(authenticating())

@@ -20,6 +20,13 @@ export default (state=initialState, action) => {
         isAuthenticating: false
       }
     }
+    case 'LOGOUT': {
+      return {
+        ...state,
+        isAuthenticated: false,
+        currentUser: {}
+      }
+    }
     default: {
       return state
     }

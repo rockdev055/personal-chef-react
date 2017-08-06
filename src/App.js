@@ -4,7 +4,7 @@ import Nav from './components/Nav'
 import Home from './components/Home'
 import HouseholdsContainer from './components/HouseholdsContainer'
 import Signup from './components/Signup'
-import { authenticate, authenticationFailure } from './redux/modules/Auth/actions'
+import { authenticate, authenticationFailure, logout } from './redux/modules/Auth/actions'
 import { connect } from 'react-redux'
 import {
   BrowserRouter as Router,
@@ -28,7 +28,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <Nav />
+            <Nav logout={this.props.logout} />
             <Route exact path="/" component={Home} />
             <Route path="/households" component={HouseholdsContainer} />
             <Route path="/signup" component={Signup} />
@@ -39,4 +39,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, { authenticate, authenticationFailure })(App);
+export default connect(null, { authenticate, authenticationFailure, logout })(App);
