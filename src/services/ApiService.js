@@ -14,7 +14,10 @@ const signup = (data) => {
 }
 
 const refresh = () => {
-  const token = JSON.parse(localStorage.getItem('token'));
+  let token = localStorage.getItem('token');
+  if (token) {
+    token = JSON.parse(token)
+  }
   return fetch(`${API_URL}/auth/refresh`, {
     method: 'POST',
     headers: {

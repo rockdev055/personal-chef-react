@@ -1,21 +1,41 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
   Link
 } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const Nav = () => {
-  return (
-    <ul>
-      <div className="navbar-left">
-         <li><Link to="/">Home</Link></li>
-         <li><Link to="/households">Households</Link></li>  
-      </div>
-      <div className="navbar-right">
-        <li><Link to="/signup" className="right">Sign Up</Link></li>
-        <li><a href="" className="right">Login</a></li>
-      </div>
-    </ul>
-  )
+class Nav extends Component {
+  // constructor(props) {
+  //   super(props)
+  // }
+  handleLogout = () => this.props.logout()
+  render() {
+    return (
+      <ul>
+        <div className="navbar-left">
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/households">Households</Link></li>  
+        </div>
+        <div className="navbar-right">
+          {
+            this.props.isAuthenticated ?
+
+            <li><Link to="/" onClick={this.handleLogout}>Log Out</Link></li>
+
+            :
+            <div>
+              <li><Link to="/signup" className="right">Sign Up</Link></li>
+              <li><a href="" className="right">Login</a></li>
+            </div>
+          }
+        </div>
+      </ul>
+    )
+  }
 }
 
-export default Nav
+export default connect(state => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated
+  }
+}, null)(Nav)
