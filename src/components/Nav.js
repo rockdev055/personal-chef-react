@@ -5,10 +5,8 @@ import {
 import { connect } from 'react-redux'
 
 class Nav extends Component {
-  // constructor(props) {
-  //   super(props)
-  // }
   handleLogout = () => this.props.logout()
+  
   render() {
     return (
       <ul>
@@ -25,7 +23,7 @@ class Nav extends Component {
             :
             <div>
               <li><Link to="/signup" className="right">Sign Up</Link></li>
-              <li><a href="" className="right">Login</a></li>
+              <li><Link to="/login" className="right">Login</Link></li>
             </div>
           }
         </div>
