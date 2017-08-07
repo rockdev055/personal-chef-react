@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch'
+
 const API_URL = process.env.REACT_APP_RAILS_API_URL
 
 const fetchHouseholds = () => {
