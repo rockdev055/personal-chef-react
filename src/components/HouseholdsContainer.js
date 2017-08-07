@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import HouseholdSidebar from './HouseholdSidebar'
 import Household from './Household'
-import HouseholdService from '../services/HouseholdService'
+import ApiService from '../services/Api'
 import { Route } from 'react-router-dom'
 
 class HouseholdsContainer extends Component {
@@ -14,7 +14,7 @@ class HouseholdsContainer extends Component {
   }
 
   componentDidMount() {
-    HouseholdService.fetchHouseholds().then(households => this.setState({
+    ApiService.get(`/households`).then(households => this.setState({
       households: households
     }))
   }
