@@ -28,7 +28,7 @@ export const authenticate = () => {
 export const signup = (data, history) => {
   return dispatch => {
     dispatch(authenticating())
-    AuthService.signup(data)
+    ApiService.post('/users', data)
       .then(currentUser => {
         const { user, token } = currentUser
         localStorage.setItem('token', JSON.stringify(token))
