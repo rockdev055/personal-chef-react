@@ -12,7 +12,15 @@ class Nav extends Component {
       <ul>
         <div className="navbar-left">
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/households">Households</Link></li>  
+          {
+            this.props.isAuthenticated ?
+
+            <li><Link to="/households">Households</Link></li>
+            
+            :
+
+            null
+          }
         </div>
         <div className="navbar-right">
           {
