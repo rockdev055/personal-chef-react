@@ -25,7 +25,6 @@ export default {
   },
 
   post(url, data) {
-    console.log(data)
     const body = JSON.stringify(data)
 
     return fetch(`${API_URL}${url}`, {

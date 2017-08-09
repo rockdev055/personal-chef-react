@@ -1,4 +1,3 @@
-import AuthService from '../../../services/AuthService'
 import ApiService from '../../../services/Api'
 import { reset } from 'redux-form'
 
