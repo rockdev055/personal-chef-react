@@ -11,6 +11,7 @@ import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom'
+import { Container } from 'semantic-ui-react'
 
 class App extends Component {
 
@@ -26,17 +27,18 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      
         <Router>
           <div>
             <Nav logout={this.props.logout} />
-            <Route exact path="/" component={Home} />
-            <Route path="/households" component={HouseholdsContainer} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/login" component={Login} />
+            <Container>
+              <Route exact path="/" component={Home} />
+              <Route path="/households" component={HouseholdsContainer} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/login" component={Login} />
+            </Container>
           </div>
         </Router>
-      </div>
     );
   }
 }
