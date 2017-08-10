@@ -30,7 +30,9 @@ class App extends Component {
       
         <Router>
           <div>
+            <Container text>
             <Nav logout={this.props.logout} />
+            </Container>
             <Container>
               <Route exact path="/" component={Home} />
               <Route path="/households" component={HouseholdsContainer} />

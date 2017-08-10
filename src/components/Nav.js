@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Menu } from 'semantic-ui-react'
+import { css } from 'glamor'
 
 class Nav extends Component {
   state = {}
@@ -13,7 +14,7 @@ class Nav extends Component {
   render() {
     const { activeItem } = this.state
     return (
-      <Menu>
+      <Menu secondary {...rules}>
         <Menu.Item
           name='home'
           as={Link}
@@ -22,23 +23,19 @@ class Nav extends Component {
           onClick={this.handleClick}>
         Home  
         </Menu.Item>
-        {
-          this.props.isAuthenticated ?
-            <Menu.Item
-              name='households'
-              as={Link}
-              to="/households"
-              active={activeItem === 'households'}
-              onClick={this.handleClick}>
-              Households  
-            </Menu.Item>
-          :
-            null
-        }
+        
         {
           this.props.isAuthenticated ? 
         
             <Menu.Menu position="right">
+              <Menu.Item
+                name='households'
+                as={Link}
+                to="/households"
+                active={activeItem === 'households'}
+                onClick={this.handleClick}>
+                Households
+              </Menu.Item>
 
               <Menu.Item
                 as={Link}
@@ -76,30 +73,7 @@ export default connect(state => {
     isAuthenticated: state.auth.isAuthenticated
   }
 }, null)(Nav)
-      // <ul>
-      //   <div className="navbar-left">
-      //     <li><Link to="/">Home</Link></li>
-      //     {
-      //       this.props.isAuthenticated ?
 
-      //       <li><Link to="/households">Households</Link></li>
-            
-      //       :
-
-      //       null
-      //     }
-      //   </div>
-      //   <div className="navbar-right">
-      //     {
-      //       this.props.isAuthenticated ?
-
-      //       <li><Link to="/" onClick={this.handleLogout}>Log Out</Link></li>
-
-      //       :
-      //       <div>
-      //         <li><Link to="/signup" className="right">Sign Up</Link></li>
-      //         <li><Link to="/login" className="right">Login</Link></li>
-      //       </div>
-      //     }
-      //   </div>
-      // </ul>
+let rules = css({
+  height: '60px'
+})
