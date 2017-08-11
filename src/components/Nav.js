@@ -35,6 +35,12 @@ class Nav extends Component {
                 onClick={this.handleClick}>
                 Households
               </Menu.Item>
+              
+              <Menu.Item
+                as={Link}
+                to="/households/new">
+                New Household
+              </Menu.Item>
 
               <Menu.Item
                 as={Link}

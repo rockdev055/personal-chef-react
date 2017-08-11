@@ -12,6 +12,7 @@ import {
   Route,
 } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
+import NewHousehold from './components/NewHousehold'
 
 class App extends Component {
 
@@ -35,7 +36,8 @@ class App extends Component {
             </Container>
             <Container>
               <Route exact path="/" component={Home} />
-              <Route path="/households" component={HouseholdsContainer} />
+              <Route path="/households/new" component={NewHousehold} />
+              <Route exact path="/households" component={HouseholdsContainer} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
             </Container>
