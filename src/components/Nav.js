@@ -19,7 +19,6 @@ class Nav extends Component {
           name='home'
           as={Link}
           to="/"
-          active={activeItem === 'home'}
           onClick={this.handleClick}>
         Home  
         </Menu.Item>
