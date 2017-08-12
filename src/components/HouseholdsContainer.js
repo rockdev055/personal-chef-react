@@ -1,36 +1,31 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import HouseholdSidebar from './HouseholdSidebar'
 import Household from './Household'
-import ApiService from '../services/Api'
 import { Route } from 'react-router-dom'
+import { fetchHouseholds } from '../redux/modules/Households/actions'
 
 class HouseholdsContainer extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      households: []
-    }
   }
 
   componentDidMount() {
-    ApiService.get(`/households`).then(households => this.setState({
-      households: households
-    }))
+    this.props.fetchHouseholds()
   }
 
   render() {
     return (
       <div className="sidebar-wrapper">
-        <div className="sidebar">
-          <HouseholdSidebar url={this.props.match.url} households={this.state.households}/>
-        </div>
-        <div className="household-main">
-          <Route path={`${this.props.match.url}/:id`} component={Household} />
-        </div>
+          <Route path='/households' render={() => <HouseholdSidebar url={this.props.match.url} households={this.props.households}/>}/>
+          <Route path="/households/:id" render={(props) => <Household {...props} />} />
       </div>
     )
   }
 }
 
-export default HouseholdsContainer
+export default connect((state) => {
+  return {
+    households: state.households
+  }
+}, { fetchHouseholds })(HouseholdsContainer)
