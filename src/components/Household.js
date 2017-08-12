@@ -1,40 +1,27 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import HouseholdService from '../services/HouseholdService'
 
 class Household extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      name: ''
-    }
-  }
-  componentWillReceiveProps(nextProps) {
-    const { id } = nextProps.match.params
-    
-    HouseholdService.fetchHousehold(id)
-      .then(household => this.setState({
-        name: household.name
-      }))
-  }
-
-  componentDidMount() {
-    const { id } = this.props.match.params
-    HouseholdService.fetchHousehold(id)
-      .then(household => this.setState({
-        name: household.name
-      }))
-  }
-
   render() {
-    const { name } = this.state
-    return (
-      <div>
-        <h3>{name}</h3>
-      </div>
-    )
+    const { households } = this.props
+    const id = this.props.match.params.id
+    const household = households.find(h => h.id == id)
+    if (household) {
+      return (
+        <div>
+          <h3>{household.name}</h3>
+        </div>
+      )
+    } else {
+      return null
+    }
 
   }
 }
 
-export default Household
+export default connect(state => {
+  return {
+    households: state.households
+  }
+})(Household)
