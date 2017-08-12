@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import NewHouseholdForm from './NewHouseholdForm'
+
+import { createHousehold } from '../redux/modules/Households/actions'
 
 class NewHousehold extends Component {
 
   submit = (values) => {
-    console.log(values)
+    this.props.createHousehold(values, this.props.history)
   }
 
   render() {
@@ -19,4 +22,4 @@ class NewHousehold extends Component {
   }
 }
 
-export default NewHousehold
+export default connect(null, { createHousehold })(NewHousehold)
