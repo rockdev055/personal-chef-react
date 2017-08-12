@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import {
   BrowserRouter as Router,
   Route,
+  Switch
 } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 import NewHousehold from './components/NewHousehold'
@@ -35,11 +36,13 @@ class App extends Component {
             <Nav logout={this.props.logout} />
             </Container>
             <Container>
-              <Route exact path="/" component={Home} />
-              <Route path="/households/new" component={NewHousehold} />
-              <Route exact path="/households" component={HouseholdsContainer} />
-              <Route path="/signup" component={Signup} />
-              <Route path="/login" component={Login} />
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/households/new" component={NewHousehold} />
+                <Route path="/households" component={HouseholdsContainer} />
+                <Route path="/signup" component={Signup} />
+                <Route path="/login" component={Login} />
+              </Switch>
             </Container>
           </div>
         </Router>
