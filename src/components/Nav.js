@@ -7,19 +7,16 @@ import { Menu } from 'semantic-ui-react'
 import { css } from 'glamor'
 
 class Nav extends Component {
-  state = {}
   handleLogout = () => this.props.logout()
-  handleClick = (e, { name }) => this.setState({ activeItem: name })
   
   render() {
-    const { activeItem } = this.state
     return (
       <Menu secondary {...rules}>
         <Menu.Item
           name='home'
           as={Link}
           to="/"
-          onClick={this.handleClick}>
+        >
         Home  
         </Menu.Item>
         
@@ -31,14 +28,14 @@ class Nav extends Component {
                 name='households'
                 as={Link}
                 to="/households"
-                active={activeItem === 'households'}
-                onClick={this.handleClick}>
+              >
                 Households
               </Menu.Item>
               
               <Menu.Item
                 as={Link}
-                to="/households/new">
+                to="/households/new"
+              >
                 New Household
               </Menu.Item>
 
