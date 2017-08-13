@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import NewMealForm from './NewMealForm'
+import { createMeal } from '../redux/modules/Meals/actions'
 
 class NewMeal extends Component{ 
   
-  submit = (values) => console.log(values)
+  submit = (values) => this.props.createMeal(values, this.props.history)
 
   render() {
     return (
@@ -15,4 +17,4 @@ class NewMeal extends Component{
   }
 }
 
-export default NewMeal
+export default connect(null, { createMeal })(NewMeal)
