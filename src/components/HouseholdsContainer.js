@@ -6,10 +6,7 @@ import { Route } from 'react-router-dom'
 import { fetchHouseholds } from '../redux/modules/Households/actions'
 
 class HouseholdsContainer extends Component {
-  constructor(props) {
-    super(props)
-  }
-
+  
   componentDidMount() {
     this.props.fetchHouseholds()
   }

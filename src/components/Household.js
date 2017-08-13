@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import numeral from 'numeral'
 import HouseholdService from '../services/HouseholdService'
 
 class Household extends Component {
@@ -11,6 +12,8 @@ class Household extends Component {
       return (
         <div>
           <h3>{household.name}</h3>
+          <p>{household.address}</p>
+          <p>{numeral(household.monthly_rate).format('$0,0.00')}</p>
         </div>
       )
     } else {
