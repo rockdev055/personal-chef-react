@@ -5,8 +5,9 @@ import numeral from 'numeral'
 class Household extends Component {
   render() {
     const { households } = this.props
-    const id = this.props.match.params.id
+    const id = parseInt(this.props.match.params.id)
     const household = households.find(h => h.id === id)
+
     if (household) {
       return (
         <div>
