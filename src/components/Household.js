@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import numeral from 'numeral'
-import HouseholdService from '../services/HouseholdService'
 
 class Household extends Component {
   render() {
     const { households } = this.props
     const id = this.props.match.params.id
-    const household = households.find(h => h.id == id)
+    const household = households.find(h => h.id === id)
     if (household) {
       return (
         <div>
