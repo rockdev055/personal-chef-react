@@ -41,6 +41,12 @@ class Nav extends Component {
 
               <Menu.Item
                 as={Link}
+                to="/meals/new">
+                New Meal
+              </Menu.Item>
+
+              <Menu.Item
+                as={Link}
                 to="/"
                 onClick={this.handleLogout}>
                 Logout
