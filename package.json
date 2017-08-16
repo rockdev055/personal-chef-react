@@ -9,6 +9,7 @@
     "glamor": "^2.20.39",
     "isomorphic-fetch": "^2.2.1",
     "numeral": "^2.0.6",
+    "prettier": "^1.5.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
