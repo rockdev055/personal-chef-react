@@ -37,7 +37,6 @@ class App extends Component {
             <Container text>
             <Nav logout={this.props.logout} />
             </Container>
-            <Container>
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/households/new" component={NewHousehold} />
@@ -47,7 +46,6 @@ class App extends Component {
                 <Route path="/signup" component={Signup} />
                 <Route path="/login" component={Login} />
               </Switch>
-            </Container>
           </div>
         </Router>
     );

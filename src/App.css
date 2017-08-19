@@ -18,6 +18,8 @@
 
 .households-sidebar {
   flex: 0 0 12em;
+  background: hsl(0, 0%, 90%);
+  padding: .5em 1.4em 1em;
 }
 
 .household-content {
