@@ -11,17 +11,16 @@
   height: 100%;
 }
 
-.sidebar {
-  float: left;
-  width: 30%;
-  height: 90vh;
-  background: #eee
+
+.households-container {
+  display: flex;
 }
 
-.household-main {
-  float: left;
-  width: 70%;
-  height: 90vh;
-  background: lightgrey;
-  color: black;
+.households-sidebar {
+  flex: 0 0 12em;
+}
+
+.household-content {
+  flex: 1 1 auto;
+  text-align: center;
 }
