@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf6641c4-cdb5-4c49-8dfd-f18a2bd636d8" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/Home.js" afterPath="$PROJECT_DIR$/src/views/Home.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/Household.js" afterPath="$PROJECT_DIR$/src/views/Household.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/HouseholdHero.js" afterPath="$PROJECT_DIR$/src/views/HouseholdHero.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/HouseholdSidebar.js" afterPath="$PROJECT_DIR$/src/views/HouseholdSidebar.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/Households.js" afterPath="$PROJECT_DIR$/src/views/Households.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/HouseholdsContainer.js" afterPath="$PROJECT_DIR$/src/containers/HouseholdsContainer.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/Login.js" afterPath="$PROJECT_DIR$/src/views/Login.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/Meal.js" afterPath="$PROJECT_DIR$/src/views/Meal.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/MealsContainer.js" afterPath="$PROJECT_DIR$/src/containers/MealsContainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
-    </list>
+    <list default="true" id="bf6641c4-cdb5-4c49-8dfd-f18a2bd636d8" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -144,29 +133,6 @@
               <item name="personal_chef_client" type="b2602c69:ProjectViewProjectNode" />
               <item name="personal_chef_client" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="personal_chef_client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="personal_chef_client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="personal_chef_client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="personal_chef_client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="personal_chef_client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="personal_chef_client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="containers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="personal_chef_client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="personal_chef_client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -209,12 +175,12 @@
       <option name="presentableId" value="Default" />
       <updated>1503125727998</updated>
       <workItem from="1503125730556" duration="42000" />
-      <workItem from="1503295998375" duration="375000" />
+      <workItem from="1503295998375" duration="472000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="417000" />
+    <option name="totallyTimeSpent" value="514000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
