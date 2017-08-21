@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchMeals } from  '../redux/modules/Meals/actions'
-import Meal from './Meal'
+import { fetchMeals } from '../redux/modules/Meals/actions'
+import Meal from '../views/Meal'
 
 class MealsContainer extends Component {
 

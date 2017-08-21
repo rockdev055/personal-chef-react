@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import Nav from './components/Nav'
-import Home from './components/Home'
-import HouseholdsContainer from './components/HouseholdsContainer'
+import Home from './views/Home'
+import HouseholdsContainer from './containers/HouseholdsContainer'
 import Signup from './components/Signup'
-import Login from './components/Login'
+import Login from './views/Login'
 import { authenticate, authenticationFailure, logout } from './redux/modules/Auth/actions'
 import { connect } from 'react-redux'
 import {
@@ -15,7 +15,7 @@ import {
 import { Container } from 'semantic-ui-react'
 import NewHousehold from './components/NewHousehold'
 import NewMeal from './components/NewMeal'
-import MealsContainer from './components/MealsContainer'
+import MealsContainer from './containers/MealsContainer'
 
 class App extends Component {
 
