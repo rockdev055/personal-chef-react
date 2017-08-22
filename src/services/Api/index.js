@@ -24,7 +24,7 @@ export default {
       .then(data => data)
   },
 
-  post(url, data) {
+  post(url, data = {}) {
     const body = JSON.stringify(data)
 
     return fetch(`${API_URL}${url}`, {
