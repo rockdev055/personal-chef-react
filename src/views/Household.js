@@ -7,7 +7,6 @@ class Household extends Component {
 
   handleOnChange = (id) => {
     const householdId = parseInt(this.props.match.params.id)
-    // make a call to a prop method to add the meal selected to the current household
     this.props.createHouseholdMeal(id, householdId)
   }
 
