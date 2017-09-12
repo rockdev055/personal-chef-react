@@ -32,8 +32,7 @@ class HouseholdsContainer extends Component {
 }
 
 export default connect((state) => {
-  const clients = state.households.filter(h => h.client === true)
   return {
-    households: clients
+    households: state.households
   }
 }, { fetchHouseholds, fetchMeals })(HouseholdsContainer)
