@@ -4,11 +4,17 @@ import HouseholdSidebar from '../views/HouseholdSidebar'
 import HouseholdHero from '../views/HouseholdHero'
 import Household from '../views/Household'
 import { Route, Switch } from 'react-router-dom'
-
+import { fetchHouseholds } from '../redux/modules/Households/actions'
+import { fetchMeals } from '../redux/modules/Meals/actions'
 
 class LeadsContainer extends Component {
+
+  componentDidMount() {
+    this.props.fetchHouseholds()
+    this.props.fetchMeals()
+  }
+
   render() {
-    console.log(this.props.leads)
     return (
       <div className="households-container">
         <div className="households-sidebar">
@@ -27,10 +33,9 @@ class LeadsContainer extends Component {
 
 const mapStateToProps = (state) => {
   const leads = state.households.filter(h => h.client === false)
-  console.log(leads)
   return {
     leads
   }
 }
 
-export default connect(mapStateToProps)(LeadsContainer)
+export default connect(mapStateToProps, { fetchHouseholds, fetchMeals })(LeadsContainer)

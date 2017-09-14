@@ -3,6 +3,7 @@ import './App.css';
 import Nav from './components/Nav'
 import Home from './views/Home'
 import HouseholdsContainer from './containers/HouseholdsContainer'
+import LeadsContainer from './containers/LeadsContainer'
 import Signup from './components/Signup'
 import Login from './views/Login'
 import { authenticate, authenticationFailure, logout } from './redux/modules/Auth/actions'
@@ -42,6 +43,7 @@ class App extends Component {
                 <Route path="/households/new" component={NewHousehold} />
                 <Route exact path="/meals" component={MealsContainer} />
                 <Route path="/households" component={HouseholdsContainer} />
+                <Route path="/leads" component={LeadsContainer} />
                 <Route path="/meals/new" component={NewMeal} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/login" component={Login} />
