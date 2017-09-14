@@ -33,6 +33,14 @@ class Nav extends Component {
               </Menu.Item>
 
               <Menu.Item
+                name='leads'
+                as={Link}
+                to="/leads"
+              >
+                Leads
+              </Menu.Item>
+
+              <Menu.Item
                 name='meals'
                 as={Link}
                 to="/meals"
