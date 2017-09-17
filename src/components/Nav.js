@@ -29,7 +29,7 @@ class Nav extends Component {
                 as={Link}
                 to="/households"
               >
-                Households
+                Clients
               </Menu.Item>
 
               <Menu.Item
