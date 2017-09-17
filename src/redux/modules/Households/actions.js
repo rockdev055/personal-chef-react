@@ -37,7 +37,7 @@ export const createHousehold = (household, history) => {
     return ApiService.post(`/households`, household)
       .then(data => {
         dispatch(addHousehold(data))
-        history.replace('/households')
+        history.replace('/leads')
       })
   }
 }
