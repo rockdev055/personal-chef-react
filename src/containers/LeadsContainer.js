@@ -3,7 +3,13 @@ import { connect } from 'react-redux'
 import { fetchHouseholds, convertLead } from '../redux/modules/Households/actions'
 import { fetchMeals } from '../redux/modules/Meals/actions'
 import { Container } from 'semantic-ui-react'
+import styled from 'styled-components'
 import Lead from '../views/Lead'
+
+const StyledLeads = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
 
 class LeadsContainer extends Component {
 
@@ -19,7 +25,9 @@ class LeadsContainer extends Component {
   render() {
     return (
       <Container>
-       {this.props.leads.map(l => <Lead key={l.id} {...l} convert={this.handleConvert} />)}
+        <StyledLeads>
+          {this.props.leads.map(l => <Lead key={l.id} {...l} convert={this.handleConvert} />)}
+        </StyledLeads>
       </Container>
     )
   }
