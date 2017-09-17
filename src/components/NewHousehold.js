@@ -14,7 +14,7 @@ class NewHousehold extends Component {
     return (
       <div>
         <h2>
-          Create A New Household
+          Create A New Lead
         </h2>
         <NewHouseholdForm onSubmit={this.submit}/>
       </div>

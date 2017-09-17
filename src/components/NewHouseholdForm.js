@@ -21,7 +21,7 @@ class NewHouseholdForm extends Component {
             <Field {...styles3} name="monthly_rate" component="input" type="text" />
           </li>
           <li {...styles}>
-            <button {...btnStyle} type="submit">Create Household</button>
+            <button {...btnStyle} type="submit">Create Lead</button>
           </li>
         </ul>
       </form>
