@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import HouseholdSidebar from '../views/HouseholdSidebar'
-import HouseholdHero from '../views/HouseholdHero'
-import Household from '../views/Household'
-import { Route, Switch } from 'react-router-dom'
-import { fetchHouseholds } from '../redux/modules/Households/actions'
+import { fetchHouseholds, convertLead } from '../redux/modules/Households/actions'
 import { fetchMeals } from '../redux/modules/Meals/actions'
+import { Container } from 'semantic-ui-react'
+import Lead from '../views/Lead'
 
 class LeadsContainer extends Component {
 
@@ -14,19 +12,15 @@ class LeadsContainer extends Component {
     this.props.fetchMeals()
   }
 
+  handleConvert = (id) => {
+    this.props.convertLead(id, this.props.history)
+  }
+
   render() {
     return (
-      <div className="households-container">
-        <div className="households-sidebar">
-          <Route path='/leads' render={() => <HouseholdSidebar url={this.props.match.url} households={this.props.leads} />} />
-        </div>
-        <div className="household-content">
-          <Switch>
-            <Route exact path="/leads" component={HouseholdHero} />
-            <Route path="/leads/:id" render={(props) => <Household {...props} />} />
-          </Switch>
-        </div>
-      </div>
+      <Container>
+       {this.props.leads.map(l => <Lead key={l.id} {...l} convert={this.handleConvert} />)}
+      </Container>
     )
   }
 }
@@ -38,4 +32,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchHouseholds, fetchMeals })(LeadsContainer)
+export default connect(mapStateToProps, { fetchHouseholds, fetchMeals, convertLead })(LeadsContainer)

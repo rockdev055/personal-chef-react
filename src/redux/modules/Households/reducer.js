@@ -18,6 +18,10 @@ export default (state = [], action) => {
 
       return newState
     }
+    case 'CONVERT_LEAD_COMPLETE': {
+      const newState = state.map(h => h.id === action.client.id ? action.client : h)
+      return newState
+    }
     default: {
       return state
     }

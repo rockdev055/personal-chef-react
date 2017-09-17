@@ -7,10 +7,28 @@ const addHousehold = (household) => {
   }
 }
 
+export const convertLead = (id, history) => {
+  return dispatch => {
+    return ApiService.post(`/households/${id}/convert`)
+      .then(client => {
+        console.log(client)
+        dispatch(convertLeadComplete(client))
+        history.push(`/households/${client.id}`)
+      })
+  }
+}
+
 const fetchHouseholdsComplete = households => {
   return {
     type: 'FETCH_HOUSEHOLDS_SUCCESS',
     households
+  }
+}
+
+const convertLeadComplete = (client) => {
+  return {
+    type: 'CONVERT_LEAD_COMPLETE',
+    client
   }
 }
 
