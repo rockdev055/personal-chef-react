@@ -6,7 +6,7 @@ import HouseholdsContainer from './containers/HouseholdsContainer'
 import LeadsContainer from './containers/LeadsContainer'
 import Signup from './components/Signup'
 import Login from './views/Login'
-import { authenticate, authenticationFailure, logout } from './redux/modules/Auth/actions'
+import { authenticate, authenticationFailure, logout, apiCall } from './redux/modules/Auth/actions'
 import { connect } from 'react-redux'
 import {
   BrowserRouter as Router,
@@ -17,8 +17,14 @@ import { Container } from 'semantic-ui-react'
 import NewHousehold from './components/NewHousehold'
 import NewMeal from './components/NewMeal'
 import MealsContainer from './containers/MealsContainer'
+import Loading from './components/Loading'
 
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+    props.apiCall()
+  }
 
   componentDidMount() {
     const token = localStorage.getItem('token')
@@ -31,6 +37,9 @@ class App extends Component {
   }
 
   render() {
+    if (this.props.loading) {
+      return <Loading />
+    }
     return (
       
         <Router>
@@ -54,4 +63,8 @@ class App extends Component {
   }
 }
 
-export default connect(null, { authenticate, authenticationFailure, logout })(App);
+export default connect(state => {
+  return {
+    loading: state.auth.loading
+  }
+}, { authenticate, authenticationFailure, logout, apiCall })(App);
