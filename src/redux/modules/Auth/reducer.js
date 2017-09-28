@@ -1,7 +1,8 @@
 const initialState = {
   isAuthenticated: false,
   isAuthenticating: false,
-  currentUser: {}
+  currentUser: {},
+  loading: true
 }
 
 export default (state=initialState, action) => {
@@ -25,6 +26,18 @@ export default (state=initialState, action) => {
         ...state,
         isAuthenticated: false,
         currentUser: {}
+      }
+    }
+    case 'APP_LOADING': {
+      return {
+        ...state,
+        loading: true
+      }
+    }
+    case 'APP_LOADING_COMPLETE': {
+      return {
+        ...state,
+        loading: false
       }
     }
     default: {
