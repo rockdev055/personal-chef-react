@@ -18,7 +18,7 @@ export const convertLead = (id, history) => {
   }
 }
 
-const fetchHouseholdsComplete = households => {
+export const fetchHouseholdsComplete = households => {
   return {
     type: 'FETCH_HOUSEHOLDS_SUCCESS',
     households
@@ -46,6 +46,7 @@ export const fetchHouseholds = () => {
   return dispatch => {
     return ApiService.get(`/households`)
       .then(data => {
+        console.log('data found')
         dispatch(fetchHouseholdsComplete(data))
       })
 

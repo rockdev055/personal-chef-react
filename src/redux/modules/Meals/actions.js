@@ -7,7 +7,7 @@ const addMeal = (meal) => {
   }
 }
 
-const fetchMealsComplete = (meals) => {
+export const fetchMealsComplete = (meals) => {
   return {
     type: 'FETCH_MEALS_SUCCESS',
     meals
