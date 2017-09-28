@@ -11,13 +11,13 @@ class HouseholdsContainer extends Component {
     return (
       <div className="households-container">
         <div className="households-sidebar">
-            <Route path='/households' render={() => <HouseholdSidebar url={this.props.match.url} households={this.props.households}/>}/>
+          <Route path='/households' render={() => <HouseholdSidebar url={this.props.match.url} households={this.props.households} />} />
         </div>
         <div className="household-content">
-            <Switch>
-              <Route exact path="/households" component={HouseholdHero} />
-              <Route path="/households/:id" render={(props) => <Household {...props} />} />
-            </Switch>
+          <Switch>
+            <Route exact path="/households" component={HouseholdHero} />
+            <Route path="/households/:id" render={(props) => <Household {...props} />} />
+          </Switch>
         </div>
       </div>
     )
@@ -29,4 +29,5 @@ export default connect((state) => {
   return {
     households: clients
   }
-})(HouseholdsContainer)
+}import { } from 'prettier';
+)(HouseholdsContainer)
