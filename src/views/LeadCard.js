@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const StyledLead = styled.div`
   width: 31%;
@@ -10,17 +11,17 @@ const StyledLead = styled.div`
   margin: 10px;
 `
 
-const Lead = (props) => {
+const LeadCard = (props) => {
   const _onClick = () => {
     props.convert(props.id)
   }
   return (
     <StyledLead>
-      <h1>{props.name}</h1>
+      <h1><Link to={`/leads/${props.id}`}>{props.name}</Link></h1>
       <h3>{props.address}</h3>
       <button onClick={_onClick}>Convert Client</button>
     </StyledLead>
   )
 }
 
-export default Lead
+export default LeadCard
