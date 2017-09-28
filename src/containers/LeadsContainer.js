@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import { Switch, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchHouseholds, convertLead } from '../redux/modules/Households/actions'
 import { fetchMeals } from '../redux/modules/Meals/actions'
 import { Container } from 'semantic-ui-react'
 import styled from 'styled-components'
-import Lead from '../views/Lead'
+import LeadCard from '../views/LeadCard'
+import LeadDetail from '../views/LeadDetail'
 
 const StyledLeads = styled.div`
   display: flex;
@@ -26,8 +28,9 @@ class LeadsContainer extends Component {
     return (
       <Container>
         <StyledLeads>
-          {this.props.leads.map(l => <Lead key={l.id} {...l} convert={this.handleConvert} />)}
+          {this.props.leads.map(l => <LeadCard key={l.id} {...l} convert={this.handleConvert} />)}
         </StyledLeads>
+        <Route path="/leads/:id" component={LeadDetail}/>
       </Container>
     )
   }
