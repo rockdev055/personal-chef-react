@@ -29,5 +29,5 @@ export default connect((state) => {
   return {
     households: clients
   }
-}import { } from 'prettier';
+}
 )(HouseholdsContainer)
