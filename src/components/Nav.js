@@ -8,7 +8,7 @@ import { css } from 'glamor'
 
 class Nav extends Component {
   handleLogout = () => this.props.logout()
-  
+
   render() {
     return (
       <Menu secondary {...rules}>
@@ -17,27 +17,19 @@ class Nav extends Component {
           as={Link}
           to="/"
         >
-        Home  
+          Home
         </Menu.Item>
-        
+
         {
-          this.props.isAuthenticated ? 
-        
+          this.props.isAuthenticated ?
+
             <Menu.Menu position="right">
               <Menu.Item
                 name='households'
                 as={Link}
                 to="/households"
               >
-                Clients
-              </Menu.Item>
-
-              <Menu.Item
-                name='leads'
-                as={Link}
-                to="/leads"
-              >
-                Leads
+                Households
               </Menu.Item>
 
               <Menu.Item
@@ -47,7 +39,7 @@ class Nav extends Component {
               >
                 Meals
               </Menu.Item>
-              
+
               <Menu.Item
                 as={Link}
                 to="/households/new"
@@ -86,7 +78,7 @@ class Nav extends Component {
               </Menu.Item>
             </Menu.Menu>
 
-          }
+        }
       </Menu>
     )
   }
