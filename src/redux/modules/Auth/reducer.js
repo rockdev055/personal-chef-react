@@ -5,8 +5,8 @@ const initialState = {
   loading: true
 }
 
-export default (state=initialState, action) => {
-  switch(action.type) {
+export default (state = initialState, action) => {
+  switch (action.type) {
     case 'AUTHENTICATING': {
       return {
         ...state,
@@ -18,7 +18,14 @@ export default (state=initialState, action) => {
         ...state,
         currentUser: action.user,
         isAuthenticated: true,
-        isAuthenticating: false
+        isAuthenticating: false,
+        loading: false,
+      }
+    }
+    case 'AUTH_FAILURE': {
+      return {
+        ...state,
+        loading: false
       }
     }
     case 'LOGOUT': {
