@@ -23,7 +23,6 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-    props.apiCall()
   }
 
   componentDidMount() {
@@ -41,24 +40,24 @@ class App extends Component {
       return <Loading />
     }
     return (
-      
-        <Router>
-          <div>
-            <Container text>
+
+      <Router>
+        <div>
+          <Container text>
             <Nav logout={this.props.logout} />
-            </Container>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/households/new" component={NewHousehold} />
-                <Route exact path="/meals" component={MealsContainer} />
-                <Route path="/households" component={HouseholdsContainer} />
-                <Route path="/leads" component={LeadsContainer} />
-                <Route path="/meals/new" component={NewMeal} />
-                <Route path="/signup" component={Signup} />
-                <Route path="/login" component={Login} />
-              </Switch>
-          </div>
-        </Router>
+          </Container>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/households/new" component={NewHousehold} />
+            <Route exact path="/meals" component={MealsContainer} />
+            <Route path="/households" component={HouseholdsContainer} />
+            <Route path="/leads" component={LeadsContainer} />
+            <Route path="/meals/new" component={NewMeal} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
