@@ -3,7 +3,6 @@ import './App.css';
 import Nav from './components/Nav'
 import Home from './views/Home'
 import HouseholdsContainer from './containers/HouseholdsContainer'
-import LeadsContainer from './containers/LeadsContainer'
 import Signup from './components/Signup'
 import Login from './views/Login'
 import { authenticate, authenticationFailure, logout, apiCall } from './redux/modules/Auth/actions'

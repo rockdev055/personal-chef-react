@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { Switch, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchHouseholds, convertLead } from '../redux/modules/Households/actions'
 import { fetchMeals } from '../redux/modules/Meals/actions'
 import { Container } from 'semantic-ui-react'
 import styled from 'styled-components'
 import LeadCard from '../views/LeadCard'
-import LeadDetail from '../views/LeadDetail'
+
 
 const StyledLeads = styled.div`
   display: flex;

@@ -16,7 +16,7 @@ const LeadDetail = (props) => {
 
 export default connect((state, ownProps) => {
   const id = ownProps.match.params.id
-  const lead = state.households.find(h => h.id == id)
+  const lead = state.households.find(h => h.id === id)
   return {
     lead
   }
