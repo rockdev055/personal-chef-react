@@ -17,7 +17,7 @@ const LeadCard = (props) => {
   }
   return (
     <StyledLead>
-      <h1><Link to={`/leads/${props.id}`}>{props.name}</Link></h1>
+      <h1><Link to={`/households/leads/${props.id}`}>{props.name}</Link></h1>
       <h3>{props.address}</h3>
       <button onClick={_onClick}>Convert Client</button>
     </StyledLead>

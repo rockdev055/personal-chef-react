@@ -15,11 +15,6 @@ const StyledLeads = styled.div`
 
 class LeadsContainer extends Component {
 
-  componentDidMount() {
-    this.props.fetchHouseholds()
-    this.props.fetchMeals()
-  }
-
   handleConvert = (id) => {
     this.props.convertLead(id, this.props.history)
   }
@@ -30,7 +25,6 @@ class LeadsContainer extends Component {
         <StyledLeads>
           {this.props.leads.map(l => <LeadCard key={l.id} {...l} convert={this.handleConvert} />)}
         </StyledLeads>
-        <Route path="/leads/:id" component={LeadDetail}/>
       </Container>
     )
   }

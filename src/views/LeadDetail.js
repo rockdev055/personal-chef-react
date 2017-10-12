@@ -2,14 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 const LeadDetail = (props) => {
-  console.log(props)
-  return (
-    <div>
-      <h1>Lead Details</h1>
-      {props.lead.name}
-    </div>
-
-  )
+  if (props.lead) {
+    return (
+      <div>
+        <h1>Lead Details</h1>
+        {props.lead.name}
+      </div>
+    )
+  } else {
+    return null
+  }
 }
 
 export default connect((state, ownProps) => {
