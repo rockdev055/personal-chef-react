@@ -53,7 +53,6 @@ class App extends Component {
             <Route path="/households/new" component={NewHousehold} />
             <Route exact path="/meals" component={MealsContainer} />
             <Route path="/households" component={HouseholdsContainer} />
-            <Route path="/leads" component={LeadsContainer} />
             <Route path="/meals/new" component={NewMeal} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
