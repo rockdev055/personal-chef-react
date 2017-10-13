@@ -55,7 +55,7 @@ export const signup = (data, history) => {
         localStorage.setItem('token', JSON.stringify(token))
         dispatch(setUser(user))
         dispatch(reset('signup'))
-        history.replace('/households')
+        history.replace('/')
       })
   }
 }
@@ -69,7 +69,7 @@ export const login = (params, history) => {
         localStorage.setItem('token', JSON.stringify(token))
         dispatch(setUser(user))
         dispatch(reset('login'))
-        history.replace('/households')
+        history.replace('/')
       })
   }
 }
