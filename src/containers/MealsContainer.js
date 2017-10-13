@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchMeals } from '../redux/modules/Meals/actions'
 import Meal from '../views/Meal'
+import { Container } from 'semantic-ui-react'
 
 class MealsContainer extends Component {
 
@@ -10,10 +11,10 @@ class MealsContainer extends Component {
   }
   render() {
     return (
-      <div>
+      <Container textAlign='center'>
         <h1>All Meals</h1>
         {this.props.meals.map(m => <Meal key={m.id} {...m} />)}
-      </div>
+      </Container>
     )
   }
 }
