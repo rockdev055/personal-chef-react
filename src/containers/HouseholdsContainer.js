@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Household from '../views/Household'
 import LeadDetail from '../views/LeadDetail'
+import ClientHero from '../views/ClientHero'
 import ClientsContainer from './ClientsContainer'
 import LeadsContainer from './LeadsContainer'
 import { Route, Switch, Link } from 'react-router-dom'
@@ -35,6 +36,7 @@ class HouseholdsContainer extends Component {
             </Button>
           </Link>
           <Switch>
+            <Route exact path="/households" component={ClientHero} />
             <Route exact path="/households/clients" component={ClientsContainer} />
             <Route exact path="/households/leads" component={LeadsContainer} />
             <Route path={`/households/clients/:id`} component={Household} />

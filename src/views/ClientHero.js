@@ -1,3 +1,3 @@
 import React from 'react'
 
-export default () => <h1>Select a Household</h1>
+export default () => <h1>Select Clients or Leads</h1>
