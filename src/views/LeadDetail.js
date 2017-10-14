@@ -15,7 +15,7 @@ const LeadDetail = (props) => {
 }
 
 export default connect((state, ownProps) => {
-  const id = ownProps.match.params.id
+  const id = parseInt(ownProps.match.params.id, 10)
   const lead = state.households.find(h => h.id === id)
   return {
     lead
