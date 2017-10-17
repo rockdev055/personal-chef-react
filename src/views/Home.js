@@ -1,18 +1,35 @@
 import React from 'react'
 import { css } from 'glamor'
+import { connect } from 'react-redux'
 import Background from '../images/pexels-photo-349609.jpeg'
 import { Container } from 'semantic-ui-react'
 
-export default () => (
-  <div>
-    <div {...rules}>
-    </div>
-    <Container>
-      <h1>Home</h1>
-    </Container>
+const Home = (props) => {
+  return (
+    <div>
+      <div {...rules}>
+      </div>
+      <Container>
+        {
+          props.authenticated ?
 
-  </div>
-)
+            <h1>{props.clients} clients</h1>
+
+            :
+
+
+            <h1>Home</h1>
+
+        }
+      </Container>
+
+    </div>
+  )
+}
+
+export default connect(state =>
+  ({ authenticated: state.auth.isAuthenticated, clients: 7 })
+)(Home)
 
 let rules = css({
   width: '100%',
