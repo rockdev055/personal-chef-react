@@ -7,12 +7,14 @@ import ClientsContainer from './ClientsContainer'
 import LeadsContainer from './LeadsContainer'
 import { Route, Switch, Link } from 'react-router-dom'
 import { fetchHouseholds } from '../redux/modules/Households/actions'
+import { fetchMembers } from '../redux/modules/Members/actions'
 import { Button, Icon } from 'semantic-ui-react'
 
 class HouseholdsContainer extends Component {
   constructor(props) {
     super(props)
     props.fetchHouseholds()
+    props.fetchMembers()
   }
 
   render() {
@@ -48,4 +50,4 @@ class HouseholdsContainer extends Component {
   }
 }
 
-export default connect(null, { fetchHouseholds })(HouseholdsContainer)
+export default connect(null, { fetchHouseholds, fetchMembers })(HouseholdsContainer)
