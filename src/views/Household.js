@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import numeral from 'numeral'
 import { createHouseholdMeal } from '../redux/modules/HouseholdMeals/actions'
 import NewHouseholdMember from '../components/NewHouseholdMember'
+import { Card, Grid, List } from 'semantic-ui-react'
 
 class Household extends Component {
 
@@ -22,10 +23,35 @@ class Household extends Component {
       const mealsAssociated = meals.filter(m => household.meal_ids.includes(m.id))
       return (
         <div>
-          <h3>{household.name}</h3>
-          <p>{household.address}</p>
-          <p>{numeral(household.monthly_rate).format('$0,0.00')}</p>
-          {mealsNotAssociated.map(m => (<span key={m.id}><span>{m.name}</span><input onChange={() => this.handleOnChange(m.id)} type="checkbox" value={m.id} /></span>))}
+          <Grid divided='vertically'>
+            <Grid.Row textAlign='center' columns={2}>
+              <Grid.Column textAlign='center'>
+                <Card centered raised>
+                  <Card.Content>
+                    <Card.Header>
+                      <h3>{household.name} Family</h3>
+                    </Card.Header>
+                  </Card.Content>
+                  <Card.Content>
+                    <p>{household.address}</p>
+                    <p>{numeral(household.monthly_rate).format('$0,0.00')}</p>
+                  </Card.Content>
+                </Card>
+              </Grid.Column>
+              <Grid.Column>
+                <Card centered raised>
+                  <Card.Content>
+                    <Card.Header>
+                      Meals Not Made
+                    </Card.Header>
+                    <List>
+                      {mealsNotAssociated.map(m => (<List.Item key={m.id}><input onChange={() => this.handleOnChange(m.id)} type="checkbox" value={m.id} /><span>{m.name}</span></List.Item>))}
+                    </List>
+                  </Card.Content>
+                </Card>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
           <div>
             <NewHouseholdMember />
             <h2>Members</h2>
