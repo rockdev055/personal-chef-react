@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import numeral from 'numeral'
 import { createHouseholdMeal } from '../redux/modules/HouseholdMeals/actions'
 import NewHouseholdMember from '../components/NewHouseholdMember'
-import { Card, Grid, List } from 'semantic-ui-react'
+import { Card, Grid, List, Divider } from 'semantic-ui-react'
 
 class Household extends Component {
 
@@ -24,18 +24,35 @@ class Household extends Component {
       return (
         <div>
           <Grid divided='vertically'>
-            <Grid.Row textAlign='center' columns={2}>
-              <Grid.Column textAlign='center'>
+            <Grid.Row textAlign='center' columns={3} stretched>
+              <Grid.Column>
                 <Card centered raised>
                   <Card.Content>
                     <Card.Header>
                       <h3>{household.name} Family</h3>
                     </Card.Header>
-                  </Card.Content>
-                  <Card.Content>
+                    <Divider />
                     <p>{household.address}</p>
                     <p>{numeral(household.monthly_rate).format('$0,0.00')}</p>
                   </Card.Content>
+                  <Card.Content>
+                    <h2>Members</h2>
+                    {members.map(m => {
+                      return (
+                        <div key={m.id}>
+                          <h3>{m.first_name}</h3>
+                        </div>
+                      )
+                    })}
+                  </Card.Content>
+                </Card>
+              </Grid.Column>
+              <Grid.Column>
+                <Card centered raised>
+                  <div>
+                    <h2>Meals</h2>
+                    {mealsAssociated.map(m => <p key={m.id}>{m.name}</p>)}
+                  </div>
                 </Card>
               </Grid.Column>
               <Grid.Column>
@@ -53,20 +70,10 @@ class Household extends Component {
             </Grid.Row>
           </Grid>
           <div>
-            <NewHouseholdMember />
-            <h2>Members</h2>
-            {members.map(m => {
-              return (
-                <div key={m.id}>
-                  <h3>{m.first_name}</h3>
-                </div>
-              )
-            })}
+            <NewHouseholdMember id={id} />
+
           </div>
-          <div>
-            <h2>Meals</h2>
-            {mealsAssociated.map(m => <p key={m.id}>{m.name}</p>)}
-          </div>
+
         </div>
       )
     } else {
