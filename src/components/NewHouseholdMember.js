@@ -7,7 +7,7 @@ import { createHouseholdMember } from '../redux/modules/Members/actions'
 class NewHouseholdMember extends Component {
 
   submit = (values) => {
-    this.props.createHouseholdMember(values)
+    this.props.createHouseholdMember(values, this.props.id)
   }
 
   render() {

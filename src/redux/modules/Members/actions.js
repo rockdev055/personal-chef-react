@@ -15,12 +15,15 @@ export const fetchMembers = () => {
   }
 }
 
-export const createHouseholdMember = (member) => {
+export const createHouseholdMember = (member, id) => {
   return dispatch => {
-    dispatch({
-      type: 'CREATE_MEMBER_SUCCESS',
-      payload: {}
-    })
-    dispatch(reset('newHouseholdMember'))
+    return ApiService.post(`/households/${id}/members`, member)
+      .then(member => {
+        dispatch({
+          type: 'CREATE_MEMBER_SUCCESS',
+          member
+        })
+        dispatch(reset('newHouseholdMember'))
+      })
   }
 }
