@@ -46,7 +46,6 @@ export const fetchHouseholds = () => {
   return dispatch => {
     return ApiService.get(`/households`)
       .then(data => {
-        console.log('data found')
         dispatch(fetchHouseholdsComplete(data))
       })
 
