@@ -11,18 +11,13 @@
   height: 100%;
 }
 
-
-.households-container {
-  display: flex;
-}
-
 .households-sidebar {
   flex: 0 0 12em;
   background: hsl(0, 0%, 90%);
   padding: .5em 1.4em 1em;
 }
 
-.household-content {
+/* .household-content {
   flex: 1 1 auto;
   text-align: center;
-}
+} */
