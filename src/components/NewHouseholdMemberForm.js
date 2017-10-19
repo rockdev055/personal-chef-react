@@ -1,37 +1,59 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { Form } from 'semantic-ui-react'
 import { css } from 'glamor'
 
 class NewHouseholdMemberForm extends Component {
   render() {
     const { handleSubmit } = this.props
     return (
-      <form onSubmit={handleSubmit}>
-        <ul {...ul}>
-          <li {...styles}>
-            <label {...styles2} htmlFor="first_name">First Name</label>
-            <Field {...styles3} name="first_name" component="input" type="text" />
-          </li>
-          <li {...styles}>
-            <label {...styles2} htmlFor="last_name">Last Name</label>
-            <Field {...styles3} name="last_name" component="input" type="text" />
-          </li>
-          <li {...styles}>
-            <label {...styles2} htmlFor="email">Email</label>
-            <Field {...styles3} name="email" component="input" type="text" />
-          </li>
-          <li {...styles}>
-            <label {...styles2} htmlFor="phone_number">Phone Number</label>
-            <Field {...styles3} name="phone_number" component="input" type="text" />
-          </li>
-          <li {...styles}>
-            <button {...btnStyle} type="submit">Create Member</button>
-          </li>
-        </ul>
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <Form.Field>
+          <label htmlFor="first_name">First Name</label>
+          <Field name="first_name" component="input" type="text" />
+        </Form.Field>
+        <Form.Field>
+          <label htmlFor="last_name">Last Name</label>
+          <Field name="last_name" component="input" type="text" />
+        </Form.Field>
+        <Form.Field>
+          <label htmlFor="email">Email</label>
+          <Field name="email" component="input" type="text" />
+        </Form.Field>
+        <Form.Field>
+          <label htmlFor="phone_number">Phone Number</label>
+          <Field name="phone_number" component="input" type="text" />
+        </Form.Field>
+        <Form.Button primary>
+          Create Member
+        </Form.Button>
+      </Form>
     )
   }
 }
+{/* <form onSubmit={handleSubmit}>
+  <ul {...ul}>
+    <li {...styles}>
+      <label {...styles2} htmlFor="first_name">First Name</label>
+      <Field {...styles3} name="first_name" component="input" type="text" />
+    </li>
+    <li {...styles}>
+      <label {...styles2} htmlFor="last_name">Last Name</label>
+      <Field {...styles3} name="last_name" component="input" type="text" />
+    </li>
+    <li {...styles}>
+      <label {...styles2} htmlFor="email">Email</label>
+      <Field {...styles3} name="email" component="input" type="text" />
+    </li>
+    <li {...styles}>
+      <label {...styles2} htmlFor="phone_number">Phone Number</label>
+      <Field {...styles3} name="phone_number" component="input" type="text" />
+    </li>
+    <li {...styles}>
+      <button {...btnStyle} type="submit">Create Member</button>
+    </li>
+  </ul>
+</form> */}
 
 export default reduxForm({
   form: 'newHouseholdMember'

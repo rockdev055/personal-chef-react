@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import numeral from 'numeral'
 import { createHouseholdMeal } from '../redux/modules/HouseholdMeals/actions'
 import NewHouseholdMember from '../components/NewHouseholdMember'
-import { Card, Grid, List, Divider } from 'semantic-ui-react'
+import { Card, Grid, List, Divider, Container } from 'semantic-ui-react'
 
 class Household extends Component {
 
@@ -69,11 +69,17 @@ class Household extends Component {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <div>
-            <NewHouseholdMember id={id} />
-
-          </div>
-
+          <Grid.Row columns={1}>
+            <Grid.Column>
+              <Container text>
+                <Card centered raised fluid>
+                  <Card.Content>
+                    <NewHouseholdMember id={id} />
+                  </Card.Content>
+                </Card>
+              </Container>
+            </Grid.Column>
+          </Grid.Row>
         </div>
       )
     } else {
