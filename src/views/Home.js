@@ -27,9 +27,13 @@ const Home = (props) => {
   )
 }
 
-export default connect(state =>
-  ({ authenticated: state.auth.isAuthenticated, clients: 7 })
-)(Home)
+export default connect(state => {
+  const clients = state.households.filter(h => h.client == true).length
+  return {
+    authenticated: state.auth.isAuthenticated,
+    clients
+  }
+})(Home)
 
 let rules = css({
   width: '100%',
