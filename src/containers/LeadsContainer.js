@@ -19,13 +19,21 @@ class LeadsContainer extends Component {
   }
 
   render() {
-    return (
-      <Container>
-        <StyledLeads>
-          {this.props.leads.map(l => <LeadCard key={l.id} {...l} convert={this.handleConvert} />)}
-        </StyledLeads>
-      </Container>
-    )
+    return this.props.leads.length == 0 ?
+
+      (
+        <h1>Currently No Leads</h1>
+      )
+
+      :
+
+      (
+        <Container>
+          <StyledLeads>
+            {this.props.leads.map(l => <LeadCard key={l.id} {...l} convert={this.handleConvert} />)}
+          </StyledLeads>
+        </Container>
+      )
   }
 }
 
