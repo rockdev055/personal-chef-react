@@ -37,11 +37,4 @@ class LeadsContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const leads = state.households.filter(h => h.client === false)
-  return {
-    leads
-  }
-}
-
-export default connect(mapStateToProps, { fetchHouseholds, fetchMeals, convertLead })(LeadsContainer)
+export default connect(null, { fetchHouseholds, fetchMeals, convertLead })(LeadsContainer)

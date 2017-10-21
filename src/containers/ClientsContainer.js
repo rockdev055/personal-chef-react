@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import ClientCard from '../views/ClientCard'
 import { Container } from 'semantic-ui-react'
 import styled from 'styled-components'
@@ -12,6 +11,7 @@ const StyledLeads = styled.div`
 
 class ClientsContainer extends Component {
   render() {
+    console.log(this.props)
     const clients = this.props.clients.map(c => <ClientCard key={c.id} {...c} />)
     return (
       <Container>
@@ -23,9 +23,4 @@ class ClientsContainer extends Component {
   }
 }
 
-export default connect(state => {
-  const clients = state.households.filter(h => h.client === true)
-  return {
-    clients
-  }
-})(ClientsContainer)
+export default ClientsContainer
