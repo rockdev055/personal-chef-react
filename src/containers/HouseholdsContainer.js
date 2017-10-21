@@ -18,6 +18,9 @@ class HouseholdsContainer extends Component {
   }
 
   render() {
+    const clients = this.props.households.filter(h => h.client == true)
+    const leads = this.props.households.filter(h => h.client !== true)
+
     return (
       <Container>
         <div className="household-content">
@@ -42,8 +45,8 @@ class HouseholdsContainer extends Component {
           <Divider />
           <Switch>
             <Route exact path="/households" component={ClientHero} />
-            <Route exact path="/households/clients" component={ClientsContainer} />
-            <Route exact path="/households/leads" component={LeadsContainer} />
+            <Route exact path="/households/clients" render={() => <ClientsContainer clients={clients} />} />
+            <Route exact path="/households/leads" render={() => <LeadsContainer leads={leads} />} />
             <Route path={`/households/clients/:id`} component={Household} />
             <Route path={`/households/leads/:id`} component={LeadDetail} />
           </Switch>
@@ -53,4 +56,8 @@ class HouseholdsContainer extends Component {
   }
 }
 
-export default connect(null, { fetchHouseholds, fetchMembers })(HouseholdsContainer)
+export default connect(state => {
+  return {
+    households: state.households
+  }
+}, { fetchHouseholds, fetchMembers })(HouseholdsContainer)
