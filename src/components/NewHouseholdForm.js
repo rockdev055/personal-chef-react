@@ -17,7 +17,7 @@ class NewHouseholdForm extends Component {
             <Field {...styles3} name="address" component="input" type="text" />
           </li>
           <li {...styles}>
-            <label {...styles2} htmlFor="monthly_rate">Monthly Rate</label>
+            <label {...styles2} htmlFor="monthly_rate">Potential Monthly Rate</label>
             <Field {...styles3} name="monthly_rate" component="input" type="text" />
           </li>
           <li {...styles}>
@@ -54,7 +54,7 @@ const styles2 = css({
 
 const styles3 = css({
   flex: '1 0 220px',
-  padding: '15px',  
+  padding: '15px',
   borderRadius: '15px',
   border: '2px solid gray',
   ':focus': {
