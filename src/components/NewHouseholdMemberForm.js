@@ -31,29 +31,6 @@ class NewHouseholdMemberForm extends Component {
     )
   }
 }
-{/* <form onSubmit={handleSubmit}>
-  <ul {...ul}>
-    <li {...styles}>
-      <label {...styles2} htmlFor="first_name">First Name</label>
-      <Field {...styles3} name="first_name" component="input" type="text" />
-    </li>
-    <li {...styles}>
-      <label {...styles2} htmlFor="last_name">Last Name</label>
-      <Field {...styles3} name="last_name" component="input" type="text" />
-    </li>
-    <li {...styles}>
-      <label {...styles2} htmlFor="email">Email</label>
-      <Field {...styles3} name="email" component="input" type="text" />
-    </li>
-    <li {...styles}>
-      <label {...styles2} htmlFor="phone_number">Phone Number</label>
-      <Field {...styles3} name="phone_number" component="input" type="text" />
-    </li>
-    <li {...styles}>
-      <button {...btnStyle} type="submit">Create Member</button>
-    </li>
-  </ul>
-</form> */}
 
 export default reduxForm({
   form: 'newHouseholdMember'
