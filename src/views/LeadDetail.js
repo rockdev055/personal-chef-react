@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { convertLead } from '../redux/modules/Households/actions'
+import numeral from 'numeral'
 
 class LeadDetail extends Component {
-  constructor() {
-    super()
-
+  constructor(props) {
+    super(props)
     this.state = {
-      converting: false
+      converting: false,
+      rate: 0
     }
   }
 
   submit = (e) => {
     e.preventDefault()
-    this.props.convertLead(this.props.lead.id, this.props.history)
+    const newRate = { monthly_rate: this.state.rate }
+
+    this.props.convertLead(this.props.lead.id, newRate, this.props.history)
   }
 
   handleConvert = () => {
@@ -22,12 +25,18 @@ class LeadDetail extends Component {
     })
   }
 
+  handleRateChange = (e) => {
+    this.setState({
+      rate: e.target.value
+    })
+  }
+
   render() {
     if (this.props.lead) {
       return (
         <div>
           <h1>Lead Details</h1>
-          <h3>{this.props.lead.name}</h3>
+          <h3>{this.props.lead.name} ({numeral(this.props.lead.monthly_rate).format('$0,0.00')})</h3>
           <button onClick={this.handleConvert}>Convert Client</button>
           {
             this.state.converting
@@ -35,7 +44,7 @@ class LeadDetail extends Component {
               ?
               <form onSubmit={this.submit}>
                 <h3>Monthly Rate</h3>
-                <input type='text' />
+                <input onChange={this.handleRateChange} type='text' />
                 <input type="submit" />
               </form>
 
