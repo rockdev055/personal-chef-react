@@ -1,16 +1,53 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { convertLead } from '../redux/modules/Households/actions'
 
-const LeadDetail = (props) => {
-  if (props.lead) {
-    return (
-      <div>
-        <h1>Lead Details</h1>
-        {props.lead.name}
-      </div>
-    )
-  } else {
-    return null
+class LeadDetail extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      converting: false
+    }
+  }
+
+  submit = (e) => {
+    e.preventDefault()
+    this.props.convertLead(this.props.lead.id, this.props.history)
+  }
+
+  handleConvert = () => {
+    this.setState({
+      converting: true
+    })
+  }
+
+  render() {
+    if (this.props.lead) {
+      return (
+        <div>
+          <h1>Lead Details</h1>
+          <h3>{this.props.lead.name}</h3>
+          <button onClick={this.handleConvert}>Convert Client</button>
+          {
+            this.state.converting
+
+              ?
+              <form onSubmit={this.submit}>
+                <h3>Monthly Rate</h3>
+                <input type='text' />
+                <input type="submit" />
+              </form>
+
+              :
+
+              null
+          }
+        </div>
+      )
+    } else {
+      return null
+    }
   }
 }
 
@@ -20,4 +57,4 @@ export default connect((state, ownProps) => {
   return {
     lead
   }
-})(LeadDetail)
+}, { convertLead })(LeadDetail)

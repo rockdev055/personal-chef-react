@@ -13,15 +13,11 @@ const StyledLead = styled.div`
 `
 
 const LeadCard = (props) => {
-  const _onClick = () => {
-    props.convert(props.id)
-  }
   return (
     <StyledLead>
       <h1><Link to={`/households/leads/${props.id}`}>{props.name}</Link></h1>
       <h3>{props.address}</h3>
       <h4>Potential Monthly: {numeral(props.monthly_rate).format('$0,0.00')}</h4>
-      <button onClick={_onClick}>Convert Client</button>
     </StyledLead>
   )
 }
