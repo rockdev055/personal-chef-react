@@ -47,4 +47,3 @@ let rules = css({
   backgroundSize: 'cover',
   opacity: '0.5'
 })
-

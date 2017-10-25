@@ -69,7 +69,7 @@ export const login = (params, history) => {
         localStorage.setItem('token', JSON.stringify(token))
         dispatch(setUser(user))
         dispatch(reset('login'))
-        history.replace('/')
+        history.replace('/households')
       })
   }
 }

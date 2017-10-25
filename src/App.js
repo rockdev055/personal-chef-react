@@ -18,14 +18,12 @@ import NewMeal from './components/NewMeal'
 import MealsContainer from './containers/MealsContainer'
 import Loading from './components/Loading'
 import { fetchMeals } from './redux/modules/Meals/actions'
-import { fetchHouseholds } from './redux/modules/Households/actions'
 
 class App extends Component {
 
   constructor(props) {
     super(props)
     props.fetchMeals()
-    props.fetchHouseholds()
   }
 
   componentDidMount() {
@@ -68,4 +66,4 @@ export default connect(state => {
   return {
     loading: state.auth.loading
   }
-}, { authenticate, authenticationFailure, logout, apiCall, fetchMeals, fetchHouseholds })(App);
+}, { authenticate, authenticationFailure, logout, apiCall, fetchMeals })(App);

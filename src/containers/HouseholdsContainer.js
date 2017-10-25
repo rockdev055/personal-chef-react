@@ -13,7 +13,7 @@ import { Button, Icon, Container, Divider } from 'semantic-ui-react'
 class HouseholdsContainer extends Component {
   constructor(props) {
     super(props)
-    // props.fetchHouseholds()
+    props.fetchHouseholds()
     props.fetchMembers()
   }
 
