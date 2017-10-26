@@ -6,6 +6,7 @@
     "react-scripts": "1.0.10"
   },
   "dependencies": {
+    "date-fns": "^1.29.0",
     "glamor": "^2.20.39",
     "isomorphic-fetch": "^2.2.1",
     "numeral": "^2.0.6",
