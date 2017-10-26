@@ -4,6 +4,7 @@ import numeral from 'numeral'
 import { createHouseholdMeal } from '../redux/modules/HouseholdMeals/actions'
 import NewHouseholdMember from '../components/NewHouseholdMember'
 import { Card, Grid, List, Divider, Container } from 'semantic-ui-react'
+import format from 'date-fns/format'
 
 class Household extends Component {
 
@@ -68,7 +69,6 @@ class Household extends Component {
                 </Card>
               </Grid.Column>
             </Grid.Row>
-          </Grid>
           <Grid.Row columns={1}>
             <Grid.Column>
               <Container text>
@@ -80,6 +80,21 @@ class Household extends Component {
               </Container>
             </Grid.Column>
           </Grid.Row>
+          <Grid.Row columns={1} textAlign='center'>
+            <Grid.Column>
+              <Container text>
+                <Card centered raised fluid>
+                  <Card.Content>
+                    <Card.Header>Notes</Card.Header>
+                    <List>
+                      {household.notes.map(n => <List.Item>{format(new Date(n.created_at), 'MMMM Do, YYYY')} - {n.content}</List.Item>)}
+                    </List>
+                  </Card.Content>
+                </Card>
+              </Container>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         </div>
       )
     } else {
