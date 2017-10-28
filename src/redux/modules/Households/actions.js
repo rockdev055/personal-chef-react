@@ -12,7 +12,7 @@ export const convertLead = (id, monthlyRate, history) => {
     return ApiService.post(`/households/${id}/convert`, monthlyRate)
       .then(client => {
         dispatch(convertLeadComplete(client))
-        history.push(`/households/${client.id}`)
+        history.push(`/households/clients/${client.id}`)
       })
   }
 }
