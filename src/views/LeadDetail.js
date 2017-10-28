@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { convertLead } from '../redux/modules/Households/actions'
 import numeral from 'numeral'
+import HouseholdNotes from '../components/HouseholdNotes'
 
 class LeadDetail extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class LeadDetail extends Component {
 
               null
           }
+          <HouseholdNotes notes={this.props.lead.notes} />
         </div>
       )
     } else {
