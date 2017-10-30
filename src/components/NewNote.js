@@ -9,7 +9,6 @@ class NewNote extends Component {
   render() {
     return (
       <div>
-        <h1>Create a new Note</h1>
         <NewNoteForm onSubmit={this.submit} />
       </div>
     );
