@@ -1,6 +1,6 @@
-import React from "react";
-import { List } from "semantic-ui-react";
-import format from "date-fns/format";
+import React from "react"
+import { List } from "semantic-ui-react"
+import format from "date-fns/format"
 
 const HouseholdNotes = ({ notes }) => {
   return (
@@ -11,7 +11,7 @@ const HouseholdNotes = ({ notes }) => {
         </List.Item>
       )}
     </List>
-  );
-};
+  )
+}
 
-export default HouseholdNotes;
+export default HouseholdNotes

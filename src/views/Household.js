@@ -1,30 +1,30 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import numeral from "numeral";
-import { createHouseholdMeal } from "../redux/modules/HouseholdMeals/actions";
-import NewHouseholdMember from "../components/NewHouseholdMember";
-import { Card, Grid, List, Divider, Container } from "semantic-ui-react";
-import HouseholdNotes from "../components/HouseholdNotes";
-import NewNote from "../components/NewNote";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import numeral from "numeral"
+import { createHouseholdMeal } from "../redux/modules/HouseholdMeals/actions"
+import NewHouseholdMember from "../components/NewHouseholdMember"
+import { Card, Grid, List, Divider, Container } from "semantic-ui-react"
+import HouseholdNotes from "../components/HouseholdNotes"
+import NewNote from "../components/NewNote"
 
 class Household extends Component {
   handleOnChange = id => {
-    const householdId = parseInt(this.props.match.params.id, 10);
-    this.props.createHouseholdMeal(id, householdId);
-  };
+    const householdId = parseInt(this.props.match.params.id, 10)
+    this.props.createHouseholdMeal(id, householdId)
+  }
 
   render() {
-    const { households, meals, members } = this.props;
-    const id = parseInt(this.props.match.params.id, 10);
-    const household = households.find(h => h.id === id);
+    const { households, meals, members } = this.props
+    const id = parseInt(this.props.match.params.id, 10)
+    const household = households.find(h => h.id === id)
 
     if (household) {
       const mealsNotAssociated = meals.filter(
         m => !household.meal_ids.includes(m.id)
-      );
+      )
       const mealsAssociated = meals.filter(m =>
         household.meal_ids.includes(m.id)
-      );
+      )
       return (
         <div>
           <Grid divided="vertically">
@@ -54,7 +54,7 @@ class Household extends Component {
                             {m.first_name}
                           </h3>
                         </div>
-                      );
+                      )
                     })}
                   </Card.Content>
                 </Card>
@@ -110,7 +110,7 @@ class Household extends Component {
                   <Card centered raised fluid>
                     <Card.Content>
                       <Card.Header>Notes</Card.Header>
-                      <NewNote />
+                      <NewNote householdId={household.id} />
                       <HouseholdNotes notes={household.notes} />
                     </Card.Content>
                   </Card>
@@ -119,22 +119,22 @@ class Household extends Component {
             </Grid.Row>
           </Grid>
         </div>
-      );
+      )
     } else {
-      return null;
+      return null
     }
   }
 }
 
 export default connect(
   (state, ownProps) => {
-    const id = parseInt(ownProps.match.params.id, 10);
-    const members = state.members.filter(m => m.household_id === id);
+    const id = parseInt(ownProps.match.params.id, 10)
+    const members = state.members.filter(m => m.household_id === id)
     return {
       households: state.households,
       meals: state.meals,
       members
-    };
+    }
   },
   { createHouseholdMeal }
-)(Household);
+)(Household)
