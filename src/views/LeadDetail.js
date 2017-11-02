@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { convertLead } from '../redux/modules/Households/actions'
 import numeral from 'numeral'
 import HouseholdNotes from '../components/HouseholdNotes'
+import NewNote from '../components/NewNote'
 
 class LeadDetail extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class LeadDetail extends Component {
     }
   }
 
-  submit = (e) => {
+  submit = e => {
     e.preventDefault()
     const newRate = { monthly_rate: this.state.rate }
 
@@ -26,7 +27,7 @@ class LeadDetail extends Component {
     })
   }
 
-  handleRateChange = (e) => {
+  handleRateChange = e => {
     this.setState({
       rate: e.target.value
     })
@@ -37,22 +38,20 @@ class LeadDetail extends Component {
       return (
         <div>
           <h1>Lead Details</h1>
-          <h3>{this.props.lead.name} ({numeral(this.props.lead.monthly_rate).format('$0,0.00')})</h3>
+          <h3>
+            {this.props.lead.name} ({numeral(
+              this.props.lead.monthly_rate
+            ).format('$0,0.00')})
+          </h3>
           <button onClick={this.handleConvert}>Convert Client</button>
-          {
-            this.state.converting
-
-              ?
-              <form onSubmit={this.submit}>
+          {this.state.converting
+            ? <form onSubmit={this.submit}>
                 <h3>Monthly Rate</h3>
-                <input onChange={this.handleRateChange} type='text' />
+                <input onChange={this.handleRateChange} type="text" />
                 <input type="submit" />
               </form>
-
-              :
-
-              null
-          }
+            : null}
+          <NewNote householdId={this.props.lead.id} />
           <HouseholdNotes notes={this.props.lead.notes} />
         </div>
       )
@@ -62,10 +61,13 @@ class LeadDetail extends Component {
   }
 }
 
-export default connect((state, ownProps) => {
-  const id = parseInt(ownProps.match.params.id, 10)
-  const lead = state.households.find(h => h.id === id)
-  return {
-    lead
-  }
-}, { convertLead })(LeadDetail)
+export default connect(
+  (state, ownProps) => {
+    const id = parseInt(ownProps.match.params.id, 10)
+    const lead = state.households.find(h => h.id === id)
+    return {
+      lead
+    }
+  },
+  { convertLead }
+)(LeadDetail)
