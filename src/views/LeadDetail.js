@@ -21,6 +21,12 @@ class LeadDetail extends Component {
     this.props.convertLead(this.props.lead.id, newRate, this.props.history)
   }
 
+  cancel = () => {
+    this.setState({
+      converting: false
+    })
+  }
+
   handleConvert = () => {
     this.setState({
       converting: true
@@ -43,13 +49,18 @@ class LeadDetail extends Component {
               this.props.lead.monthly_rate
             ).format('$0,0.00')})
           </h3>
-          <button onClick={this.handleConvert}>Convert Client</button>
+          {!this.state.converting
+            ? <button onClick={this.handleConvert}>Convert Client</button>
+            : null}
           {this.state.converting
-            ? <form onSubmit={this.submit}>
-                <h3>Monthly Rate</h3>
-                <input onChange={this.handleRateChange} type="text" />
-                <input type="submit" />
-              </form>
+            ? <div>
+                <form onSubmit={this.submit}>
+                  <h3>Monthly Rate</h3>
+                  <input onChange={this.handleRateChange} type="text" />
+                  <input type="submit" value="Convert" />
+                </form>
+                <button onClick={this.cancel}>Cancel</button>
+              </div>
             : null}
           <NewNote householdId={this.props.lead.id} />
           <HouseholdNotes notes={this.props.lead.notes} />
