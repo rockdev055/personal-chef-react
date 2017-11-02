@@ -1,17 +1,20 @@
 export default (state = [], action) => {
   switch (action.type) {
-    case "FETCH_HOUSEHOLDS_SUCCESS": {
+    case 'FETCH_HOUSEHOLDS_SUCCESS': {
       return action.households
     }
-    case "ADD_HOUSEHOLD_SUCCESS": {
+    case 'ADD_HOUSEHOLD_SUCCESS': {
       return [...state, action.household]
     }
-    case "CREATE_NOTE_SUCCESS": {
+    case 'CREATE_NOTE_SUCCESS': {
       return state.map(
-        h => (h.id == action.household.id ? action.household : h)
+        h =>
+          h.id == action.note.household_id
+            ? Object.assign({}, h, { notes: h.notes.concat(action.note) })
+            : h
       )
     }
-    case "ADD_MEAL_TO_HOUSEHOLD": {
+    case 'ADD_MEAL_TO_HOUSEHOLD': {
       const newState = state.map(h => {
         if (h.id === action.householdId) {
           const updatedHousehold = Object.assign({}, h, {
@@ -25,7 +28,7 @@ export default (state = [], action) => {
 
       return newState
     }
-    case "CONVERT_LEAD_COMPLETE": {
+    case 'CONVERT_LEAD_COMPLETE': {
       const newState = state.map(
         h => (h.id === action.client.id ? action.client : h)
       )

@@ -1,18 +1,18 @@
-import ApiService from "../../../services/Api"
-import { reset } from "redux-form"
+import ApiService from '../../../services/Api'
+import { reset } from 'redux-form'
 
-const createNoteSuccess = household => {
+const createNoteSuccess = note => {
   return {
-    type: "CREATE_NOTE_SUCCESS",
-    household
+    type: 'CREATE_NOTE_SUCCESS',
+    note
   }
 }
 
 export const createNote = (id, note) => {
   return dispatch => {
-    return ApiService.post(`/households/${id}/notes`, note).then(household => {
-      dispatch(createNoteSuccess(household))
-      dispatch(reset("newNote"))
+    return ApiService.post(`/households/${id}/notes`, note).then(note => {
+      dispatch(createNoteSuccess(note))
+      dispatch(reset('newNote'))
     })
   }
 }
