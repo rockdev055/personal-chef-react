@@ -8,12 +8,14 @@ const StyledLeads = styled.div`
   flex-wrap: wrap;
 `
 
-
 class ClientsContainer extends Component {
   render() {
-    console.log(this.props)
-    const clients = this.props.clients.map(c => <ClientCard key={c.id} {...c} />)
-    const monthly = this.props.clients.reduce((a, b) => {return a + b.monthly_rate}, 0)
+    const clients = this.props.clients.map(c =>
+      <ClientCard key={c.id} {...c} />
+    )
+    const monthly = this.props.clients.reduce((a, b) => {
+      return a + b.monthly_rate
+    }, 0)
     return (
       <Container>
         {monthly}
