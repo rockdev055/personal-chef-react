@@ -4,6 +4,7 @@ import { convertLead } from '../redux/modules/Households/actions'
 import numeral from 'numeral'
 import HouseholdNotes from '../components/HouseholdNotes'
 import NewNote from '../components/NewNote'
+import { Grid, Card, Header, Button, Input } from 'semantic-ui-react'
 
 class LeadDetail extends Component {
   constructor(props) {
@@ -42,29 +43,63 @@ class LeadDetail extends Component {
   render() {
     if (this.props.lead) {
       return (
-        <div>
-          <h1>Lead Details</h1>
-          <h3>
-            {this.props.lead.name} ({numeral(
-              this.props.lead.monthly_rate
-            ).format('$0,0.00')})
-          </h3>
-          {!this.state.converting
-            ? <button onClick={this.handleConvert}>Convert Client</button>
-            : null}
-          {this.state.converting
-            ? <div>
-                <form onSubmit={this.submit}>
-                  <h3>Monthly Rate</h3>
-                  <input onChange={this.handleRateChange} type="text" />
-                  <input type="submit" value="Convert" />
-                </form>
-                <button onClick={this.cancel}>Cancel</button>
-              </div>
-            : null}
-          <NewNote householdId={this.props.lead.id} />
-          <HouseholdNotes notes={this.props.lead.notes} />
-        </div>
+        <Grid>
+          <Grid.Row textAlign="center" columns={1}>
+            <Card centered raised>
+              <Card.Content>
+                <Header as="h1">
+                  {this.props.lead.name}
+                </Header>
+
+                <Header as="h3">
+                  Potential Monthly: ({numeral(
+                    this.props.lead.monthly_rate
+                  ).format('$0,0.00')})
+                </Header>
+              </Card.Content>
+            </Card>
+          </Grid.Row>
+          <Grid.Row textAlign="center" columns={1}>
+            <Grid.Column width={7} textAlign="centered">
+              <Card centered raised fluid>
+                <Card.Content>
+                  {!this.state.converting
+                    ? <Button primary onClick={this.handleConvert}>
+                        Convert Client
+                      </Button>
+                    : null}
+                  {this.state.converting
+                    ? <div>
+                        <form onSubmit={this.submit}>
+                          <h3>Monthly Rate</h3>
+                          <Input
+                            onChange={this.handleRateChange}
+                            type="text"
+                            required
+                          />
+                          <br />
+                          <Button positive>Convert</Button>
+                        </form>
+                        <Button color="red" onClick={this.cancel}>
+                          Cancel
+                        </Button>
+                      </div>
+                    : null}
+                </Card.Content>
+              </Card>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column width={10} textAlign="centered">
+              <Card centered raised fluid>
+                <Card.Content>
+                  <NewNote householdId={this.props.lead.id} />
+                  <HouseholdNotes notes={this.props.lead.notes} />
+                </Card.Content>
+              </Card>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       )
     } else {
       return null
