@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Card, Container } from 'semantic-ui-react'
 import NewEngagementForm from './NewEngagementForm'
+import { createEngagement } from '../redux/modules/Engagements/actions'
 
 class NewEngagement extends Component {
   submit = values => {
-    console.log('submitted', values)
+    this.props.createEngagement(this.props.id, values.format())
   }
 
   render() {
@@ -14,11 +16,11 @@ class NewEngagement extends Component {
           <Container textAlign="center">
             <h2>Create A New NewEngagement</h2>
           </Container>
-          <NewEngagementForm onSubmit={this.submit} />
+          <NewEngagementForm handleSubmit={this.submit} />
         </Card.Header>
       </div>
     )
   }
 }
 
-export default NewEngagement
+export default connect(null, { createEngagement })(NewEngagement)

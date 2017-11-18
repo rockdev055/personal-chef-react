@@ -19,17 +19,21 @@ class NewEngagementForm extends Component {
       startDate: date
     })
   }
-  render() {
-    const { handleSubmit } = this.props
 
+  handleSubmit = () => {
+    this.props.handleSubmit(this.state.startDate)
+  }
+
+  render() {
     return (
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <Form.Field width={5}>
           <StyledForm>
             <DatePicker
               onChange={this.handleChange}
               selected={this.state.startDate}
               showTimeSelect
+              dateFormat="LLL"
             />
           </StyledForm>
         </Form.Field>
