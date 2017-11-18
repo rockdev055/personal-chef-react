@@ -1,7 +1,8 @@
 import React from 'react'
 
-export default (props) => (
+export default props =>
   <div>
-    {props.name}
+    <a target="_blank" href={props.url}>
+      {props.name}
+    </a>
   </div>
-)
