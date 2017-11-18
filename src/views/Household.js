@@ -7,6 +7,7 @@ import NewEngagement from '../components/NewEngagement'
 import { Card, Grid, List, Divider, Container } from 'semantic-ui-react'
 import HouseholdNotes from '../components/HouseholdNotes'
 import NewNote from '../components/NewNote'
+import format from 'date-fns/format'
 
 class Household extends Component {
   handleOnChange = id => {
@@ -45,6 +46,10 @@ class Household extends Component {
                     {numeral(household.monthly_rate).format('$0,0.00')}
                   </p>
                 </Card.Content>
+              </Card>
+            </Grid.Column>
+            <Grid.Column>
+              <Card centered raised>
                 <Card.Content>
                   <h2>Members</h2>
                   {members.map(m => {
@@ -61,53 +66,26 @@ class Household extends Component {
             </Grid.Column>
             <Grid.Column>
               <Card centered raised>
-                <div>
-                  <h2>Meals</h2>
-                  {mealsAssociated.map(m =>
-                    <p key={m.id}>
-                      {m.name}
-                    </p>
-                  )}
-                </div>
-              </Card>
-            </Grid.Column>
-            <Grid.Column>
-              <Card centered raised>
                 <Card.Content>
-                  <Card.Header>Meals Not Made</Card.Header>
-                  <List>
-                    {mealsNotAssociated.map(m =>
-                      <List.Item key={m.id}>
-                        <input
-                          onChange={() => this.handleOnChange(m.id)}
-                          type="checkbox"
-                          value={m.id}
-                        />
-                        <span>
-                          {m.name}
-                        </span>
-                      </List.Item>
-                    )}
-                  </List>
+                  <Card.Header>Next Engagement</Card.Header>
+                  {format(new Date(household.engagement.date), 'MMMM Do, YYYY')}
                 </Card.Content>
               </Card>
             </Grid.Column>
           </Grid.Row>
-          <Grid.Row columns={1}>
+          <Grid.Row columns={3}>
             <Grid.Column>
               <Container text>
-                <Card centered raised fluid>
+                <Card raised>
                   <Card.Content>
                     <NewHouseholdMember id={id} />
                   </Card.Content>
                 </Card>
               </Container>
             </Grid.Column>
-          </Grid.Row>
-          <Grid.Row columns={1}>
-            <Grid.Column>
+            <Grid.Column width={9} stretched>
               <Container text>
-                <Card centered raised fluid>
+                <Card fluid raised>
                   <Card.Content>
                     <NewEngagement id={id} />
                   </Card.Content>
@@ -115,6 +93,7 @@ class Household extends Component {
               </Container>
             </Grid.Column>
           </Grid.Row>
+          <Grid.Row columns={1} />
           <Grid.Row columns={1} textAlign="center">
             <Grid.Column>
               <Container text>
