@@ -27,7 +27,7 @@ class NewEngagementForm extends Component {
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
-        <Form.Field width={5}>
+        <Form.Field>
           <StyledForm>
             <DatePicker
               onChange={this.handleChange}
@@ -37,9 +37,7 @@ class NewEngagementForm extends Component {
             />
           </StyledForm>
         </Form.Field>
-        <Form.Field>
-          <Field name="email" component="input" type="text" />
-        </Form.Field>
+
         <input type="submit" />
       </Form>
     )
