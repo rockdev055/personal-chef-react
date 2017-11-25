@@ -4,21 +4,40 @@ import numeral from 'numeral'
 import { createHouseholdMeal } from '../redux/modules/HouseholdMeals/actions'
 import NewHouseholdMember from '../components/NewHouseholdMember'
 import NewEngagement from '../components/NewEngagement'
-import { Card, Grid, List, Divider, Container } from 'semantic-ui-react'
+import { Card, Grid, List, Divider, Container, Select } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 import HouseholdNotes from '../components/HouseholdNotes'
 import NewNote from '../components/NewNote'
 import format from 'date-fns/format'
 
 class Household extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      mealId: null
+    }
+  }
   handleOnChange = id => {
     const householdId = parseInt(this.props.match.params.id, 10)
     this.props.createHouseholdMeal(id, householdId)
+  }
+
+  onSelectChange = (e, { value }) => {
+    this.setState({
+      mealId: value
+    })
   }
 
   render() {
     const { households, meals, members } = this.props
     const id = parseInt(this.props.match.params.id, 10)
     const household = households.find(h => h.id === id)
+    const mealOptions = this.props.meals.map(meal => ({
+      key: `${meal.name.toLowerCase()}-${meal.id}`,
+      text: meal.name,
+      value: meal.id
+    }))
 
     if (household) {
       const mealsNotAssociated = meals.filter(
@@ -56,7 +75,11 @@ class Household extends Component {
                     return (
                       <div key={m.id}>
                         <h3>
-                          {m.first_name}
+                          <Link
+                            to={`/households/clients/${household.id}/members/${m.id}`}
+                          >
+                            {m.first_name}
+                          </Link>
                         </h3>
                       </div>
                     )
@@ -68,7 +91,22 @@ class Household extends Component {
               <Card centered raised>
                 <Card.Content>
                   <Card.Header>Next Engagement</Card.Header>
-                  {format(new Date(household.engagement.date), 'MMMM Do, YYYY')}
+                  {household.engagement
+                    ? <div>
+                        {format(
+                          new Date(household.engagement.date),
+                          'MMMM Do, YYYY'
+                        )}
+                        <Select
+                          onChange={this.onSelectChange}
+                          placeholder="Add a meal"
+                          options={mealOptions}
+                        />
+                      </div>
+                    : <div>
+                        <br />
+                        <p>No Upcoming Engagement</p>
+                      </div>}
                 </Card.Content>
               </Card>
             </Grid.Column>
