@@ -1,7 +1,7 @@
 import 'react-datepicker/dist/react-datepicker.css'
 import '../App.css'
 import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { reduxForm } from 'redux-form'
 import { Form } from 'semantic-ui-react'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'

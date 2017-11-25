@@ -9,7 +9,7 @@ export default (state = [], action) => {
     case 'CREATE_NOTE_SUCCESS': {
       return state.map(
         h =>
-          h.id == action.note.household_id
+          h.id === parseInt(action.note.household_id, 10)
             ? Object.assign({}, h, { notes: h.notes.concat(action.note) })
             : h
       )

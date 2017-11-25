@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { Form } from 'semantic-ui-react'
-import { css } from 'glamor'
 
 class NewHouseholdMemberForm extends Component {
   render() {

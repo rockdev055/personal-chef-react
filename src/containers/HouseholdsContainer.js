@@ -19,7 +19,7 @@ class HouseholdsContainer extends Component {
   }
 
   render() {
-    const clients = this.props.households.filter(h => h.client == true)
+    const clients = this.props.households.filter(h => h.client === true)
     const leads = this.props.households.filter(h => h.client !== true)
 
     return (

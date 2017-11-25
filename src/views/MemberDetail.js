@@ -21,6 +21,8 @@ const MemberDetail = ({ member }) => {
 export default connect((state, props) => {
   console.log(parseInt(props.match.params.id, 10))
   return {
-    member: state.members.find(m => m.id == parseInt(props.match.params.id, 10))
+    member: state.members.find(
+      m => m.id === parseInt(props.match.params.id, 10)
+    )
   }
 })(MemberDetail)

@@ -4,7 +4,7 @@ import numeral from 'numeral'
 import { createHouseholdMeal } from '../redux/modules/HouseholdMeals/actions'
 import NewHouseholdMember from '../components/NewHouseholdMember'
 import NewEngagement from '../components/NewEngagement'
-import { Card, Grid, List, Divider, Container, Select } from 'semantic-ui-react'
+import { Card, Grid, Divider, Container, Select } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import HouseholdNotes from '../components/HouseholdNotes'
 import NewNote from '../components/NewNote'
@@ -30,7 +30,7 @@ class Household extends Component {
   }
 
   render() {
-    const { households, meals, members } = this.props
+    const { households, members } = this.props
     const id = parseInt(this.props.match.params.id, 10)
     const household = households.find(h => h.id === id)
     const mealOptions = this.props.meals.map(meal => ({
@@ -40,12 +40,6 @@ class Household extends Component {
     }))
 
     if (household) {
-      const mealsNotAssociated = meals.filter(
-        m => !household.meal_ids.includes(m.id)
-      )
-      const mealsAssociated = meals.filter(m =>
-        household.meal_ids.includes(m.id)
-      )
       return (
         <Grid divided="vertically">
           <Grid.Row textAlign="center" columns={3} stretched>

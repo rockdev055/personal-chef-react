@@ -4,31 +4,23 @@ import { connect } from 'react-redux'
 import Background from '../images/pexels-photo-349609.jpeg'
 import { Container } from 'semantic-ui-react'
 
-const Home = (props) => {
+const Home = props => {
   return (
     <div>
-      <div {...rules}>
-      </div>
+      <div {...rules} />
       <Container>
-        {
-          props.authenticated ?
-
-            <h1>{props.clients} clients</h1>
-
-            :
-
-
-            <h1>Home</h1>
-
-        }
+        {props.authenticated
+          ? <h1>
+              {props.clients} clients
+            </h1>
+          : <h1>Home</h1>}
       </Container>
-
     </div>
   )
 }
 
 export default connect(state => {
-  const clients = state.households.filter(h => h.client == true).length
+  const clients = state.households.filter(h => h.client === true).length
   return {
     authenticated: state.auth.isAuthenticated,
     clients
