@@ -37,7 +37,10 @@ export default (state = [], action) => {
     case "CREATE_ENGAGEMENT_SUCCESS": {
       return state.map(h => {
         if (h.id == action.engagement.household_id) {
-          return Object.assign({}, h, { engagement: action.engagement })
+          if (!h.engagement) {
+            return Object.assign({}, h, { engagement: action.engagement })
+          }
+          return h
         } else {
           return h
         }
