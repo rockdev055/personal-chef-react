@@ -1,12 +1,12 @@
 export default (state = [], action) => {
   switch (action.type) {
-    case 'FETCH_HOUSEHOLDS_SUCCESS': {
+    case "FETCH_HOUSEHOLDS_SUCCESS": {
       return action.households
     }
-    case 'ADD_HOUSEHOLD_SUCCESS': {
+    case "ADD_HOUSEHOLD_SUCCESS": {
       return [...state, action.household]
     }
-    case 'CREATE_NOTE_SUCCESS': {
+    case "CREATE_NOTE_SUCCESS": {
       return state.map(
         h =>
           h.id === parseInt(action.note.household_id, 10)
@@ -14,7 +14,7 @@ export default (state = [], action) => {
             : h
       )
     }
-    case 'ADD_MEAL_TO_HOUSEHOLD': {
+    case "ADD_MEAL_TO_HOUSEHOLD": {
       const newState = state.map(h => {
         if (h.id === action.householdId) {
           const updatedHousehold = Object.assign({}, h, {
@@ -28,11 +28,20 @@ export default (state = [], action) => {
 
       return newState
     }
-    case 'CONVERT_LEAD_COMPLETE': {
+    case "CONVERT_LEAD_COMPLETE": {
       const newState = state.map(
         h => (h.id === action.client.id ? action.client : h)
       )
       return newState
+    }
+    case "CREATE_ENGAGEMENT_SUCCESS": {
+      return state.map(h => {
+        if (h.id == action.engagement.household_id) {
+          return Object.assign({}, h, { engagement: action.engagement })
+        } else {
+          return h
+        }
+      })
     }
     default: {
       return state
