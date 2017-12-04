@@ -1,13 +1,17 @@
-import 'react-datepicker/dist/react-datepicker.css'
-import '../App.css'
-import React, { Component } from 'react'
-import { reduxForm } from 'redux-form'
-import { Form } from 'semantic-ui-react'
-import DatePicker from 'react-datepicker'
-import moment from 'moment'
-import styled from 'styled-components'
+import "react-datepicker/dist/react-datepicker.css"
+import "../App.css"
+import React, { Component } from "react"
+import { reduxForm } from "redux-form"
+import { Form } from "semantic-ui-react"
+import DatePicker from "react-datepicker"
+import moment from "moment"
+import styled from "styled-components"
 
-const StyledForm = styled.div`width: 100%;`
+const StyledForm = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+`
 
 class NewEngagementForm extends Component {
   state = {
@@ -27,23 +31,21 @@ class NewEngagementForm extends Component {
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
-        <Form.Field>
-          <StyledForm>
+        <StyledForm>
+          <Form.Field>
             <DatePicker
               onChange={this.handleChange}
               selected={this.state.startDate}
-              showTimeSelect
-              dateFormat="LLL"
+              dateFormat="LL"
             />
-          </StyledForm>
-        </Form.Field>
-
-        <input type="submit" />
+          </Form.Field>
+          <Form.Button primary>Create Engagement</Form.Button>
+        </StyledForm>
       </Form>
     )
   }
 }
 
 export default reduxForm({
-  form: 'newEngagement'
+  form: "newEngagement"
 })(NewEngagementForm)
