@@ -1,14 +1,19 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import numeral from 'numeral'
-import { createHouseholdMeal } from '../redux/modules/HouseholdMeals/actions'
-import NewHouseholdMember from '../components/NewHouseholdMember'
-import NewEngagement from '../components/NewEngagement'
-import { Card, Grid, Divider, Container, Select } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
-import HouseholdNotes from '../components/HouseholdNotes'
-import NewNote from '../components/NewNote'
-import format from 'date-fns/format'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import numeral from "numeral"
+import { createHouseholdMeal } from "../redux/modules/HouseholdMeals/actions"
+import { createEngagementMeal } from "../redux/modules/Engagements/actions"
+import NewHouseholdMember from "../components/NewHouseholdMember"
+import NewEngagement from "../components/NewEngagement"
+import EngagementMeals from "./EngagementMeals"
+import { Card, Grid, Divider, Container, Select, Form } from "semantic-ui-react"
+import { Link } from "react-router-dom"
+import HouseholdNotes from "../components/HouseholdNotes"
+import NewNote from "../components/NewNote"
+import format from "date-fns/format"
+import styled from "styled-components"
+
+const styleInput = styled.div`display: flex;`
 
 class Household extends Component {
   constructor() {
@@ -27,6 +32,14 @@ class Household extends Component {
     this.setState({
       mealId: value
     })
+  }
+
+  handleOnAddMeal = household => {
+    this.props.createEngagementMeal(
+      household.engagement.id,
+      this.state.mealId,
+      household.id
+    )
   }
 
   render() {
@@ -56,7 +69,7 @@ class Household extends Component {
                     {household.address}
                   </p>
                   <p>
-                    {numeral(household.monthly_rate).format('$0,0.00')}
+                    {numeral(household.monthly_rate).format("$0,0.00")}
                   </p>
                 </Card.Content>
               </Card>
@@ -85,16 +98,32 @@ class Household extends Component {
               <Card centered raised>
                 <Card.Content>
                   <Card.Header>Next Engagement</Card.Header>
+                  <Divider />
                   {household.engagement
                     ? <div>
+                        Date:
                         {format(
                           new Date(household.engagement.date),
-                          'MMMM Do, YYYY'
+                          "MMMM Do, YYYY"
                         )}
-                        <Select
-                          onChange={this.onSelectChange}
-                          placeholder="Add a meal"
-                          options={mealOptions}
+                        <Divider />
+                        <styleInput>
+                          <Select
+                            onChange={this.onSelectChange}
+                            placeholder="Add a meal"
+                            options={mealOptions}
+                          />
+                          <br />
+                          <Form.Button
+                            onClick={() => this.handleOnAddMeal(household)}
+                          >
+                            Add
+                          </Form.Button>
+                        </styleInput>
+                        <Divider />
+                        <h3>Meals for this Engagement</h3>
+                        <EngagementMeals
+                          mealIds={household.engagement.meal_ids}
                         />
                       </div>
                     : <div>
@@ -157,5 +186,5 @@ export default connect(
       members
     }
   },
-  { createHouseholdMeal }
+  { createHouseholdMeal, createEngagementMeal }
 )(Household)
