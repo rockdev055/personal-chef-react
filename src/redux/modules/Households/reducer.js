@@ -36,13 +36,26 @@ export default (state = [], action) => {
     }
     case "CREATE_ENGAGEMENT_SUCCESS": {
       return state.map(h => {
-        if (h.id == action.engagement.household_id) {
+        if (h.id === +action.engagement.household_id) {
           if (!h.engagement || h.engagement.date > action.engagement.date) {
             return Object.assign({}, h, {
               engagement: action.engagement
             })
           }
           return h
+        } else {
+          return h
+        }
+      })
+    }
+    case "ADD_MEAL_TO_ENGAGEMENT": {
+      return state.map(h => {
+        if (h.id === +action.householdId) {
+          return Object.assign({}, h, {
+            engagement: Object.assign({}, h.engagement, {
+              meal_ids: h.engagement.meal_ids.concat(action.mealId)
+            })
+          })
         } else {
           return h
         }
