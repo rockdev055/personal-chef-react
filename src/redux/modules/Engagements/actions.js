@@ -23,7 +23,6 @@ export const createEngagementMeal = (engagementId, mealId, householdId) => {
     ).then(mealId =>
       dispatch(addMealToEngagement(engagementId, mealId, householdId))
     )
-    dispatch({})
   }
 }
 
@@ -32,6 +31,5 @@ export const createEngagement = (householdId, date) => {
     return ApiService.post(`/households/${householdId}/engagements`, {
       engagement: { date: date }
     }).then(engagement => dispatch(addEngagementToHousehold(engagement)))
-    dispatch({})
   }
 }
