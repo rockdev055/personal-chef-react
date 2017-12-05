@@ -35,11 +35,13 @@ class Household extends Component {
   }
 
   handleOnAddMeal = household => {
-    this.props.createEngagementMeal(
-      household.engagement.id,
-      this.state.mealId,
-      household.id
-    )
+    if (!household.engagement.meal_ids.includes(this.state.mealId)) {
+      this.props.createEngagementMeal(
+        household.engagement.id,
+        this.state.mealId,
+        household.id
+      )
+    }
   }
 
   render() {

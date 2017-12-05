@@ -39,7 +39,7 @@ export default (state = [], action) => {
         if (h.id === +action.engagement.household_id) {
           if (!h.engagement || h.engagement.date > action.engagement.date) {
             return Object.assign({}, h, {
-              engagement: action.engagement
+              engagement: Object.assign({}, action.engagement, { meal_ids: [] })
             })
           }
           return h
