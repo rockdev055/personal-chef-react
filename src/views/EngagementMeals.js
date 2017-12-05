@@ -6,7 +6,9 @@ const EngagementMeals = props => {
     <div>
       {props.meals.map(m =>
         <p key={`meal-${m.id}`}>
-          {m.name}
+          <a target="_blank" href={m.url}>
+            {m.name}
+          </a>
         </p>
       )}
     </div>
