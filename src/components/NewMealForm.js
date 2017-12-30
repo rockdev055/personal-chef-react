@@ -3,17 +3,24 @@ import { reduxForm, Field } from 'redux-form'
 import { css } from 'glamor'
 
 class NewMealForm extends Component {
-
   render() {
     return (
       <form onSubmit={this.props.handleSubmit}>
         <ul {...ul}>
           <li {...styles}>
-            <label {...styles2} htmlFor="name">Meal Name</label>
+            <label {...styles2} htmlFor="name">
+              Meal Name
+            </label>
             <Field {...styles3} name="name" component="input" type="text" />
           </li>
           <li {...styles}>
-            <button {...btnStyle} >Create Meal</button>
+            <label {...styles2} htmlFor="url">
+              Meal URL
+            </label>
+            <Field {...styles3} name="url" component="input" type="text" />
+          </li>
+          <li {...styles}>
+            <button {...btnStyle}>Create Meal</button>
           </li>
         </ul>
       </form>
@@ -60,7 +67,6 @@ const styles2 = css({
   flex: '1 0 120px',
   maxWidth: '220px'
 })
-
 
 export default reduxForm({
   form: 'newMeal'

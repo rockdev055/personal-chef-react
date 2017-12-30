@@ -2,20 +2,28 @@ import React from 'react'
 import { css } from 'glamor'
 import { connect } from 'react-redux'
 import Background from '../images/pexels-photo-349609.jpeg'
-import { Container } from 'semantic-ui-react'
+import { Container, Button } from 'semantic-ui-react'
 
 const Home = props => {
   return (
-    <div>
-      <div {...rules} />
-      <Container>
+    <Container textAlign="center">
+      <div {...rules}>
         {props.authenticated
           ? <h1>
               {props.clients} clients
             </h1>
-          : <h1>Home</h1>}
-      </Container>
-    </div>
+          : <div {...hero}>
+              <h1 {...h1}>Personal Chef</h1>
+              <p {...heroSub}>
+                Keep track of your clients, meals, and schedule all in one
+                place.{' '}
+              </p>
+              <Button size="large" color="green">
+                Free Sign Up
+              </Button>
+            </div>}
+      </div>
+    </Container>
   )
 }
 
@@ -37,5 +45,20 @@ let rules = css({
   minWidth: '1024px',
   background: `url(${Background}) no-repeat center center fixed`,
   backgroundSize: 'cover',
-  opacity: '0.5'
+  display: 'flex',
+  justifyContent: 'center',
+  color: '#ecf0f1',
+  textShadow: '1px 1px #777'
+})
+
+let h1 = css({
+  fontSize: '70px'
+})
+
+let heroSub = css({
+  fontSize: '20px'
+})
+
+let hero = css({
+  marginTop: '50px'
 })
