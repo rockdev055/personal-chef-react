@@ -1,52 +1,58 @@
 import ApiService from '../../../services/Api'
+import { fetchMealsComplete } from '../Meals/actions'
 
-const addHousehold = (household) => {
+const addHousehold = household => {
   return {
     type: 'ADD_HOUSEHOLD_SUCCESS',
-    household
+    household,
   }
 }
 
 export const convertLead = (id, monthlyRate, history) => {
   return dispatch => {
-    return ApiService.post(`/households/${id}/convert`, monthlyRate)
-      .then(client => {
-        dispatch(convertLeadComplete(client))
-        history.push(`/households/clients/${client.id}`)
-      })
+    return ApiService.post(
+      `/households/${id}/convert`,
+      monthlyRate
+    ).then(client => {
+      dispatch(convertLeadComplete(client))
+      history.push(`/households/clients/${client.id}`)
+    })
   }
 }
 
 export const fetchHouseholdsComplete = households => {
   return {
     type: 'FETCH_HOUSEHOLDS_SUCCESS',
-    households
+    households,
   }
 }
 
-const convertLeadComplete = (client) => {
+const convertLeadComplete = client => {
   return {
     type: 'CONVERT_LEAD_COMPLETE',
-    client
+    client,
   }
 }
 
 export const createHousehold = (household, history) => {
   return dispatch => {
-    return ApiService.post(`/households`, household)
-      .then(data => {
-        dispatch(addHousehold(data))
-        history.replace('/households/leads')
-      })
+    return ApiService.post(`/households`, household).then(data => {
+      dispatch(addHousehold(data))
+      history.replace('/households/leads')
+    })
   }
 }
 
-export const fetchHouseholds = () => {
+export const fetchMealsAndHouseholds = () => {
   return dispatch => {
-    return ApiService.get(`/households`)
-      .then(data => {
-        dispatch(fetchHouseholdsComplete(data))
-      })
-
+    dispatch({ type: 'APP_LOADING' })
+    return Promise.all([
+      ApiService.get('/meals'),
+      ApiService.get('/households'),
+    ]).then(([meals, households]) => {
+      dispatch(fetchMealsComplete(meals))
+      dispatch(fetchHouseholdsComplete(households))
+      dispatch({ type: 'APP_LOADING_COMPLETE' })
+    })
   }
 }

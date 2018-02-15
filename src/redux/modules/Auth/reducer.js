@@ -2,7 +2,7 @@ const initialState = {
   isAuthenticated: false,
   isAuthenticating: false,
   currentUser: {},
-  loading: true
+  loading: true,
 }
 
 export default (state = initialState, action) => {
@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
     case 'AUTHENTICATING': {
       return {
         ...state,
-        isAuthenticating: true
+        isAuthenticating: true,
       }
     }
     case 'AUTH_COMPLETE': {
@@ -25,26 +25,26 @@ export default (state = initialState, action) => {
     case 'AUTH_FAILURE': {
       return {
         ...state,
-        loading: false
+        loading: false,
       }
     }
     case 'LOGOUT': {
       return {
         ...state,
         isAuthenticated: false,
-        currentUser: {}
+        currentUser: {},
       }
     }
     case 'APP_LOADING': {
       return {
         ...state,
-        loading: true
+        loading: true,
       }
     }
     case 'APP_LOADING_COMPLETE': {
       return {
         ...state,
-        loading: false
+        loading: false,
       }
     }
     default: {

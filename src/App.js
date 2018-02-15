@@ -11,7 +11,6 @@ import {
   authenticate,
   authenticationFailure,
   logout,
-  apiCall
 } from './redux/modules/Auth/actions'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
@@ -21,11 +20,13 @@ import NewMeal from './components/NewMeal'
 import MealsContainer from './containers/MealsContainer'
 import Loading from './components/Loading'
 import { fetchMeals } from './redux/modules/Meals/actions'
+import { fetchMealsAndHouseholds } from './redux/modules/Households/actions'
 
 class App extends Component {
   constructor(props) {
     super(props)
-    props.fetchMeals()
+    props.fetchMealsAndHouseholds()
+    // props.fetchHouseholds()
   }
 
   componentDidMount() {
@@ -68,10 +69,15 @@ class App extends Component {
 export default connect(
   state => {
     return {
-      loading: state.auth.loading
+      loading: state.auth.loading,
     }
   },
-  { authenticate, authenticationFailure, logout, apiCall, fetchMeals }
+  {
+    authenticate,
+    authenticationFailure,
+    logout,
+    fetchMealsAndHouseholds,
+  }
 )(App)
 
 let rules = css({
@@ -87,5 +93,5 @@ let rules = css({
   display: 'flex',
   justifyContent: 'center',
   color: '#ecf0f1',
-  textShadow: '1px 1px #777'
+  textShadow: '1px 1px #777',
 })

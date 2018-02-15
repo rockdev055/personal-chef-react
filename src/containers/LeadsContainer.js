@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {
-  fetchHouseholds,
-  convertLead
-} from '../redux/modules/Households/actions'
-import { fetchMeals } from '../redux/modules/Meals/actions'
+import { convertLead } from '../redux/modules/Households/actions'
+// import { fetchMeals } from '../redux/modules/Meals/actions'
 import { Container } from 'semantic-ui-react'
 import styled from 'styled-components'
 import LeadCard from '../views/LeadCard'
@@ -32,6 +29,4 @@ class LeadsContainer extends Component {
   }
 }
 
-export default connect(null, { fetchHouseholds, fetchMeals, convertLead })(
-  LeadsContainer
-)
+export default connect(null, { convertLead })(LeadsContainer)

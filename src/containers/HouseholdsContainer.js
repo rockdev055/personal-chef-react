@@ -7,14 +7,12 @@ import ClientHero from '../views/ClientHero'
 import ClientsContainer from './ClientsContainer'
 import LeadsContainer from './LeadsContainer'
 import { Route, Switch, Link } from 'react-router-dom'
-import { fetchHouseholds } from '../redux/modules/Households/actions'
 import { fetchMembers } from '../redux/modules/Members/actions'
 import { Button, Icon, Container, Divider } from 'semantic-ui-react'
 
 class HouseholdsContainer extends Component {
   constructor(props) {
     super(props)
-    props.fetchHouseholds()
     props.fetchMembers()
   }
 
@@ -73,8 +71,8 @@ class HouseholdsContainer extends Component {
 export default connect(
   state => {
     return {
-      households: state.households
+      households: state.households,
     }
   },
-  { fetchHouseholds, fetchMembers }
+  { fetchMembers }
 )(HouseholdsContainer)

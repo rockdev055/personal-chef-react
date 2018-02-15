@@ -6,6 +6,7 @@ import { createHousehold } from '../redux/modules/Households/actions'
 
 class NewHousehold extends Component {
   submit = values => {
+    debugger
     this.props.createHousehold(values, this.props.history)
   }
 
