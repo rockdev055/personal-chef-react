@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { fetchMeals } from '../redux/modules/Meals/actions'
 import Meal from '../views/Meal'
 import { Container } from 'semantic-ui-react'
 

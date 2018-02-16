@@ -10,7 +10,7 @@ class NewMeal extends Component {
   render() {
     return (
       <div {...h2}>
-        <h2>Create a new meal</h2>
+        <h2>Create a New Meal</h2>
         <NewMealForm onSubmit={this.submit} />
       </div>
     )
@@ -20,5 +20,5 @@ class NewMeal extends Component {
 export default connect(null, { createMeal })(NewMeal)
 
 let h2 = css({
-  textAlign: 'center'
+  textAlign: 'center',
 })

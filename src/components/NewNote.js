@@ -1,7 +1,7 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
-import NewNoteForm from "./NewNoteForm"
-import { createNote } from "../redux/modules/Notes/actions"
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import NewNoteForm from './NewNoteForm'
+import { createNote } from '../redux/modules/Notes/actions'
 
 class NewNote extends Component {
   submit = values => {

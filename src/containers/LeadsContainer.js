@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { convertLead } from '../redux/modules/Households/actions'
-// import { fetchMeals } from '../redux/modules/Meals/actions'
 import { Container } from 'semantic-ui-react'
 import styled from 'styled-components'
 import LeadCard from '../views/LeadCard'
