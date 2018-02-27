@@ -3,22 +3,21 @@ import fetch from 'isomorphic-fetch'
 const API_URL = process.env.REACT_APP_RAILS_API_URL
 
 const headers = () => {
-
   const token = JSON.parse(localStorage.getItem('token'))
 
   return {
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-    "Authorization": `Bearer ${token}`
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+    'Access-Control-Allow-Origin': '*',
   }
 }
 
 export default {
-
   get(url) {
     return fetch(`${API_URL}${url}`, {
       method: 'GET',
-      headers: headers()
+      headers: headers(),
     })
       .then(res => res.json())
       .then(data => data)
@@ -30,9 +29,9 @@ export default {
     return fetch(`${API_URL}${url}`, {
       method: 'POST',
       headers: headers(),
-      body
+      body,
     })
       .then(res => res.json())
       .then(data => data)
-  }
+  },
 }
