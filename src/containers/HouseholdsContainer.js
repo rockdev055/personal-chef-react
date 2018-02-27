@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { fetchHouseholds } from '../redux/modules/Households/actions'
 import Household from '../views/Household'
 import LeadDetail from '../views/LeadDetail'
 import MemberDetail from '../views/MemberDetail'
@@ -13,6 +14,7 @@ import { Button, Icon, Container, Divider } from 'semantic-ui-react'
 class HouseholdsContainer extends Component {
   constructor(props) {
     super(props)
+    props.fetchHouseholds()
     props.fetchMembers()
   }
 
@@ -74,5 +76,5 @@ export default connect(
       households: state.households,
     }
   },
-  { fetchMembers }
+  { fetchHouseholds, fetchMembers }
 )(HouseholdsContainer)

@@ -43,16 +43,10 @@ export const createHousehold = (household, history) => {
   }
 }
 
-export const fetchMealsAndHouseholds = () => {
+export const fetchHouseholds = () => {
   return dispatch => {
-    dispatch({ type: 'APP_LOADING' })
-    return Promise.all([
-      ApiService.get('/meals'),
-      ApiService.get('/households'),
-    ]).then(([meals, households]) => {
-      dispatch(fetchMealsComplete(meals))
-      dispatch(fetchHouseholdsComplete(households))
-      dispatch({ type: 'APP_LOADING_COMPLETE' })
+    return ApiService.get(`/households`).then(data => {
+      dispatch(fetchHouseholdsComplete(data))
     })
   }
 }

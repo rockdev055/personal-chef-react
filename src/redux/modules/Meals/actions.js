@@ -22,3 +22,11 @@ export const createMeal = (meal, history) => {
     })
   }
 }
+
+export const fetchMeals = () => {
+  return dispatch => {
+    return ApiService.get('/meals').then(meals => {
+      dispatch(fetchMealsComplete(meals))
+    })
+  }
+}

@@ -20,13 +20,11 @@ import NewMeal from './components/NewMeal'
 import MealsContainer from './containers/MealsContainer'
 import Loading from './components/Loading'
 import { fetchMeals } from './redux/modules/Meals/actions'
-import { fetchMealsAndHouseholds } from './redux/modules/Households/actions'
 
 class App extends Component {
   constructor(props) {
     super(props)
-    props.fetchMealsAndHouseholds()
-    // props.fetchHouseholds()
+    props.fetchMeals()
   }
 
   componentDidMount() {
@@ -76,7 +74,7 @@ export default connect(
     authenticate,
     authenticationFailure,
     logout,
-    fetchMealsAndHouseholds,
+    fetchMeals,
   }
 )(App)
 

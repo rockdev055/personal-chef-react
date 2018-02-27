@@ -28,10 +28,13 @@ const Home = props => {
 }
 
 export default connect(state => {
-  const clients = state.households.filter(h => h.client === true).length
+  const clients =
+    state.households.length > 0
+      ? state.households.filter(h => h.client === true).length
+      : 0
   return {
     authenticated: state.auth.isAuthenticated,
-    clients
+    clients,
   }
 })(Home)
 
@@ -48,17 +51,17 @@ let rules = css({
   display: 'flex',
   justifyContent: 'center',
   color: '#ecf0f1',
-  textShadow: '1px 1px #777'
+  textShadow: '1px 1px #777',
 })
 
 let h1 = css({
-  fontSize: '70px'
+  fontSize: '70px',
 })
 
 let heroSub = css({
-  fontSize: '20px'
+  fontSize: '20px',
 })
 
 let hero = css({
-  marginTop: '50px'
+  marginTop: '50px',
 })
