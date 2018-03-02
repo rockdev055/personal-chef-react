@@ -9,19 +9,43 @@ class NewHouseholdForm extends Component {
       <form onSubmit={handleSubmit}>
         <ul {...ul}>
           <li {...styles}>
-            <label {...styles2} htmlFor="name">Family Name</label>
+            <label {...styles2} htmlFor="name">
+              Family Name
+            </label>
             <Field {...styles3} name="name" component="input" type="text" />
           </li>
           <li {...styles}>
-            <label {...styles2} htmlFor="address">Address</label>
+            <label {...styles2} htmlFor="address">
+              Address
+            </label>
             <Field {...styles3} name="address" component="input" type="text" />
           </li>
           <li {...styles}>
-            <label {...styles2} htmlFor="monthly_rate">Potential Monthly Rate</label>
-            <Field {...styles3} name="monthly_rate" component="input" type="text" />
+            <label {...styles2} htmlFor="monthly_rate">
+              Potential Monthly Rate
+            </label>
+            <Field
+              {...styles3}
+              name="monthly_rate"
+              component="input"
+              type="text"
+            />
           </li>
           <li {...styles}>
-            <button {...btnStyle} type="submit">Create Lead</button>
+            <label {...styles2} htmlFor="client">
+              Client?
+            </label>
+            <Field
+              {...styles3}
+              name="client"
+              component="input"
+              type="checkbox"
+            />
+          </li>
+          <li {...styles}>
+            <button {...btnStyle} type="submit">
+              Create Lead
+            </button>
           </li>
         </ul>
       </form>
@@ -30,7 +54,7 @@ class NewHouseholdForm extends Component {
 }
 
 export default reduxForm({
-  form: 'newHousehold'
+  form: 'newHousehold',
 })(NewHouseholdForm)
 
 const styles = css({
@@ -39,17 +63,17 @@ const styles = css({
   alignItems: 'center',
   justifyContent: 'space-between',
   // maxWidth: '800px',
-  marginBottom: '20px'
+  marginBottom: '20px',
 })
 
 const ul = css({
   maxWidth: '800px',
-  margin: '0 auto'
+  margin: '0 auto',
 })
 
 const styles2 = css({
   flex: '1 0 120px',
-  maxWidth: '220px'
+  maxWidth: '220px',
 })
 
 const styles3 = css({
@@ -58,8 +82,8 @@ const styles3 = css({
   borderRadius: '15px',
   border: '2px solid gray',
   ':focus': {
-    outline: 'none'
-  }
+    outline: 'none',
+  },
 })
 
 const btnStyle = css({
@@ -70,5 +94,5 @@ const btnStyle = css({
   color: '#f2f2f2',
   textTransform: 'uppercase',
   letterSpacing: '.09em',
-  borderRadius: '2px'
+  borderRadius: '2px',
 })

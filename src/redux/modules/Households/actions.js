@@ -34,10 +34,14 @@ const convertLeadComplete = client => {
 }
 
 export const createHousehold = (household, history) => {
+  const { client } = household
   return dispatch => {
-    return ApiService.post(`/households`, household).then(data => {
+    const newHousehold = { household }
+    return ApiService.post(`/households`, newHousehold).then(data => {
       dispatch(addHousehold(data))
-      history.replace('/households/leads')
+      client
+        ? history.push(`/households/clients`)
+        : history.push(`/households/leads`)
     })
   }
 }
