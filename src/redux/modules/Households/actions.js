@@ -1,5 +1,4 @@
 import ApiService from '../../../services/Api'
-import { fetchMealsComplete } from '../Meals/actions'
 
 const addHousehold = household => {
   return {
