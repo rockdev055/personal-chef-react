@@ -76,7 +76,7 @@ const styles2 = css({
   maxWidth: '220px',
 })
 
-const styles3 = css({
+export const styles3 = css({
   flex: '1 0 220px',
   padding: '15px',
   borderRadius: '15px',
