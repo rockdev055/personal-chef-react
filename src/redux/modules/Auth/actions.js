@@ -5,11 +5,14 @@ import { fetchMealsComplete } from '../Meals/actions'
 
 export const authenticating = () => ({ type: 'AUTHENTICATING' })
 
-export const setUser = (user) => ({ type: 'AUTH_COMPLETE', user })
+export const setUser = user => ({ type: 'AUTH_COMPLETE', user })
 
-export const authenticationFailure = (errors) => ({ type: 'AUTH_FAILURE', errors })
+export const authenticationFailure = errors => ({
+  type: 'AUTH_FAILURE',
+  errors,
+})
 
-export const logout = (router) => {
+export const logout = router => {
   localStorage.removeItem('token')
   return { type: 'LOGOUT' }
 }
@@ -17,46 +20,43 @@ export const logout = (router) => {
 export const apiCall = () => {
   return dispatch => {
     dispatch({
-      type: 'APP_LOADING'
+      type: 'APP_LOADING',
     })
 
     const householdProm = ApiService.get(`/households`)
 
     const mealProm = ApiService.get(`/meals`)
 
-    Promise.all([householdProm, mealProm])
-      .then(values => {
-        dispatch(fetchHouseholdsComplete(values[0]))
-        dispatch(fetchMealsComplete(values[1]))
-        dispatch({ type: 'APP_LOADING_COMPLETE' })
-        console.log(values)
-      })
+    Promise.all([householdProm, mealProm]).then(values => {
+      dispatch(fetchHouseholdsComplete(values[0]))
+      dispatch(fetchMealsComplete(values[1]))
+      dispatch({ type: 'APP_LOADING_COMPLETE' })
+      console.log(values)
+    })
   }
 }
 
 export const authenticate = () => {
   return dispatch => {
     dispatch(authenticating())
-    return ApiService.post(`/auth/refresh`)
-      .then(currentUser => {
-        const { user, token } = currentUser
-        localStorage.setItem('token', JSON.stringify(token))
-        dispatch(setUser(user))
-      })
+    return ApiService.post(`/auth/refresh`).then(currentUser => {
+      const { user, token } = currentUser
+      localStorage.setItem('token', JSON.stringify(token))
+      dispatch(setUser(user))
+    })
   }
 }
 
 export const signup = (data, history) => {
   return dispatch => {
     dispatch(authenticating())
-    ApiService.post('/users', data)
-      .then(currentUser => {
-        const { user, token } = currentUser
-        localStorage.setItem('token', JSON.stringify(token))
-        dispatch(setUser(user))
-        dispatch(reset('signup'))
-        history.replace('/')
-      })
+    ApiService.post('/users', data).then(currentUser => {
+      const { user, token } = currentUser
+      localStorage.setItem('token', JSON.stringify(token))
+      dispatch(setUser(user))
+      dispatch(reset('signup'))
+      history.replace('/')
+    })
   }
 }
 
@@ -70,6 +70,9 @@ export const login = (params, history) => {
         dispatch(setUser(user))
         dispatch(reset('login'))
         history.replace('/households')
+      })
+      .catch(err => {
+        dispatch({ type: 'ERROR_MESSAGE', payload: err })
       })
   }
 }
