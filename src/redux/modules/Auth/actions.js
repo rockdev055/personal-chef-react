@@ -76,7 +76,7 @@ export const login = (params, history) => {
         history.replace('/households')
       })
       .catch(err => {
-        dispatch({ type: 'ERROR_MESSAGE', payload: err })
+        dispatch({ type: 'ERROR_MESSAGE', payload: err.message })
       })
   }
 }
