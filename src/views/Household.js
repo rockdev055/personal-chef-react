@@ -1,17 +1,17 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
-import numeral from "numeral"
-import { createHouseholdMeal } from "../redux/modules/HouseholdMeals/actions"
-import { createEngagementMeal } from "../redux/modules/Engagements/actions"
-import NewHouseholdMember from "../components/NewHouseholdMember"
-import NewEngagement from "../components/NewEngagement"
-import EngagementMeals from "./EngagementMeals"
-import { Card, Grid, Divider, Container, Select, Form } from "semantic-ui-react"
-import { Link } from "react-router-dom"
-import HouseholdNotes from "../components/HouseholdNotes"
-import NewNote from "../components/NewNote"
-import format from "date-fns/format"
-import styled from "styled-components"
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import numeral from 'numeral'
+import { createHouseholdMeal } from '../redux/modules/HouseholdMeals/actions'
+import { createEngagementMeal } from '../redux/modules/Engagements/actions'
+import NewHouseholdMember from '../components/NewHouseholdMember'
+import NewEngagement from '../components/NewEngagement'
+import EngagementMeals from './EngagementMeals'
+import { Card, Grid, Divider, Container, Select, Form } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import HouseholdNotes from '../components/HouseholdNotes'
+import NewNote from '../components/NewNote'
+import format from 'date-fns/format'
+import styled from 'styled-components'
 
 const styleInput = styled.div`display: flex;`
 
@@ -20,7 +20,7 @@ class Household extends Component {
     super()
 
     this.state = {
-      mealId: null
+      mealId: null,
     }
   }
   handleOnChange = id => {
@@ -30,7 +30,7 @@ class Household extends Component {
 
   onSelectChange = (e, { value }) => {
     this.setState({
-      mealId: value
+      mealId: value,
     })
   }
 
@@ -51,7 +51,7 @@ class Household extends Component {
     const mealOptions = this.props.meals.map(meal => ({
       key: `${meal.name.toLowerCase()}-${meal.id}`,
       text: meal.name,
-      value: meal.id
+      value: meal.id,
     }))
 
     if (household) {
@@ -71,7 +71,7 @@ class Household extends Component {
                     {household.address}
                   </p>
                   <p>
-                    {numeral(household.monthly_rate).format("$0,0.00")}
+                    {numeral(household.monthly_rate).format('$0,0.00')}
                   </p>
                 </Card.Content>
               </Card>
@@ -99,14 +99,14 @@ class Household extends Component {
             <Grid.Column>
               <Card centered raised>
                 <Card.Content>
-                  <Card.Header>Next Engagement</Card.Header>
+                  <Card.Header>Next Cook Date</Card.Header>
                   <Divider />
                   {household.engagement
                     ? <div>
                         Date:
                         {format(
                           new Date(household.engagement.date),
-                          "MMMM Do, YYYY"
+                          'MMMM Do, YYYY'
                         )}
                         <Divider />
                         <styleInput>
@@ -123,14 +123,14 @@ class Household extends Component {
                           </Form.Button>
                         </styleInput>
                         <Divider />
-                        <h3>Meals for this Engagement</h3>
+                        <h3>Meals for this Cook Date</h3>
                         <EngagementMeals
                           mealIds={household.engagement.meal_ids}
                         />
                       </div>
                     : <div>
                         <br />
-                        <p>No Upcoming Engagement</p>
+                        <p>No Upcoming Cook Date</p>
                       </div>}
                 </Card.Content>
               </Card>
@@ -185,7 +185,7 @@ export default connect(
     return {
       households: state.households,
       meals: state.meals,
-      members
+      members,
     }
   },
   { createHouseholdMeal, createEngagementMeal }

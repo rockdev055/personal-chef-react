@@ -1,11 +1,11 @@
-import "react-datepicker/dist/react-datepicker.css"
-import "../App.css"
-import React, { Component } from "react"
-import { reduxForm } from "redux-form"
-import { Form } from "semantic-ui-react"
-import DatePicker from "react-datepicker"
-import moment from "moment"
-import styled from "styled-components"
+import 'react-datepicker/dist/react-datepicker.css'
+import '../App.css'
+import React, { Component } from 'react'
+import { reduxForm } from 'redux-form'
+import { Form } from 'semantic-ui-react'
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
+import styled from 'styled-components'
 
 const StyledForm = styled.div`
   width: 100%;
@@ -15,12 +15,12 @@ const StyledForm = styled.div`
 
 class NewEngagementForm extends Component {
   state = {
-    startDate: moment()
+    startDate: moment(),
   }
 
   handleChange = date => {
     this.setState({
-      startDate: date
+      startDate: date,
     })
   }
 
@@ -39,7 +39,7 @@ class NewEngagementForm extends Component {
               dateFormat="LL"
             />
           </Form.Field>
-          <Form.Button primary>Create Engagement</Form.Button>
+          <Form.Button primary>Create Cook Date</Form.Button>
         </StyledForm>
       </Form>
     )
@@ -47,5 +47,5 @@ class NewEngagementForm extends Component {
 }
 
 export default reduxForm({
-  form: "newEngagement"
+  form: 'newEngagement',
 })(NewEngagementForm)
