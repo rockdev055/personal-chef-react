@@ -1,8 +1,12 @@
 import React from 'react'
 
-export default props =>
-  <div>
-    <a target="_blank" href={props.url}>
-      {props.name}
-    </a>
-  </div>
+const Meal = props => {
+  debugger
+  return (
+    <div>
+      <h1>Meal Card</h1>
+    </div>
+  )
+}
+
+export default Meal
