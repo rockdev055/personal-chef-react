@@ -16,7 +16,6 @@ import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 import NewHousehold from './components/NewHousehold'
-import NewMeal from './components/NewMeal'
 import MealsContainer from './containers/MealsContainer'
 import Loading from './components/Loading'
 import { fetchMeals } from './redux/modules/Meals/actions'
@@ -53,7 +52,6 @@ class App extends Component {
               <Route path="/households/new" component={NewHousehold} />
               <Route path="/meals" component={MealsContainer} />
               <Route path="/households" component={HouseholdsContainer} />
-              <Route path="/meals/new" component={NewMeal} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
             </Switch>

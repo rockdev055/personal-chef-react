@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Meal from '../views/Meal'
+import NewMeal from '../components/NewMeal'
 import { Container } from 'semantic-ui-react'
 import { Link, Route, Switch } from 'react-router-dom'
 
@@ -19,7 +20,7 @@ class MealsContainer extends Component {
           )}
         </ul>
         <Switch>
-          <Route exact path="/meals" render={() => <h2>Select a Meal</h2>} />
+          <Route path="/meals/new" component={NewMeal} />
           <Route exact path={`/meals/:id`} render={() => <Meal />} />
         </Switch>
       </Container>
