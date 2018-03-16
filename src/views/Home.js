@@ -16,7 +16,7 @@ const Home = props => {
               <h1 {...h1}>Personal Chef</h1>
               <p {...heroSub}>
                 Keep track of your clients, meals, and schedule all in one
-                place.{' '}
+                place.
               </p>
               <Button size="large" color="green">
                 Free Sign Up
