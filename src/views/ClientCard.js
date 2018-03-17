@@ -12,13 +12,18 @@ const StyledLead = styled.div`
   margin: 10px;
 `
 
-
-const ClientCard = (props) => {
+const ClientCard = ({ id, name, address, monthly_rate }) => {
   return (
     <StyledLead>
-      <Link to={`/households/clients/${props.id}`}>{props.name}</Link>
-      <h3>{props.address}</h3>
-      <h3>{numeral(props.monthly_rate).format('$0,0.00')}</h3>
+      <Link to={`/households/clients/${id}`}>
+        {name}
+      </Link>
+      <h3>
+        {address}
+      </h3>
+      <h3>
+        {numeral(monthly_rate).format('$0,0.00')}
+      </h3>
     </StyledLead>
   )
 }
