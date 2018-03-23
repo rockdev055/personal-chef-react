@@ -1,14 +1,27 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 const Meal = props => {
-  return (
-    <div>
-      <h1>Meal Card</h1>
-      <h3>
-        {props.meal.name}
-      </h3>
-    </div>
-  )
+  return props.meal
+    ? <div>
+        <h1>Meal Card</h1>
+        <h3>
+          {props.meal.name}
+        </h3>
+        <p>
+          <a target="_blank" href={props.meal.url}>
+            {props.meal.url}
+          </a>
+        </p>
+      </div>
+    : null
 }
 
-export default Meal
+const mapStateToProps = (state, ownProps) => {
+  return {
+    meal: state.meals.find(m => m.id === +ownProps.match.params.id),
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(Meal))
