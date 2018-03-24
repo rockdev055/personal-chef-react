@@ -14,6 +14,8 @@ const Meal = props => {
             {props.meal.url}
           </a>
         </p>
+        <h2>Notes</h2>
+        {props.meal.notes}
       </div>
     : null
 }
