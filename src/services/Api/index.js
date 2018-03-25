@@ -1,6 +1,9 @@
 import fetch from 'isomorphic-fetch'
 
-const API_URL = process.env.REACT_APP_RAILS_API_URL
+const hostname = window && window.location && window.location.hostname
+
+const API_URL =
+  hostname === 'localhost' ? process.env.REACT_APP_RAILS_API_DEV_URL : process.env.REACT_APP_RAILS_API_PROD_URL
 
 const headers = () => {
   const token = JSON.parse(localStorage.getItem('token'))
