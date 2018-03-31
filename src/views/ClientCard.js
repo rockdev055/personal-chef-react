@@ -10,13 +10,16 @@ const StyledLead = styled.div`
   border: 1px solid black;
   border-radius: 5px;
   margin: 10px;
+  color: green;
 `
 
 const ClientCard = ({ id, name, address, monthly_rate }) => {
   return (
     <StyledLead>
-      <Link to={`/households/clients/${id}`}>
-        {name}
+      <Link style={{ color: 'green' }} to={`/households/clients/${id}`}>
+        <h2>
+          {name}
+        </h2>
       </Link>
       <h3>
         {address}
