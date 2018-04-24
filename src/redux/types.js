@@ -1,0 +1,1 @@
+export const AUTH_FAILURE = 'AUTH_FAILURE'
