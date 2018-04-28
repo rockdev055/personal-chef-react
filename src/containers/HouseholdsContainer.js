@@ -46,21 +46,9 @@ class HouseholdsContainer extends Component {
           <Divider />
           <Switch>
             <Route exact path="/households" component={ClientHero} />
-            <Route
-              exact
-              path="/households/clients"
-              render={() => <ClientsContainer clients={clients} />}
-            />
-            <Route
-              exact
-              path="/households/leads"
-              render={() => <LeadsContainer leads={leads} />}
-            />
-            <Route
-              exact
-              path={`/households/clients/:householdId/members/:id`}
-              component={MemberDetail}
-            />
+            <Route exact path="/households/clients" render={() => <ClientsContainer clients={clients} />} />
+            <Route exact path="/households/leads" render={() => <LeadsContainer leads={leads} />} />
+            <Route exact path={`/households/clients/:householdId/members/:id`} component={MemberDetail} />
             <Route path={`/households/clients/:id`} component={Household} />
             <Route path={`/households/leads/:id`} component={LeadDetail} />
           </Switch>
@@ -70,11 +58,4 @@ class HouseholdsContainer extends Component {
   }
 }
 
-export default connect(
-  state => {
-    return {
-      households: state.households,
-    }
-  },
-  { fetchHouseholds, fetchMembers }
-)(HouseholdsContainer)
+export default connect(({ households }) => ({ households }), { fetchHouseholds, fetchMembers })(HouseholdsContainer)
