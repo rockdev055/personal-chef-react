@@ -1,4 +1,4 @@
-import { combineReducers, applyMiddleware, createStore } from 'redux'
+import { combineReducers, createStore } from 'redux'
 import auth from '../modules/Auth/reducer'
 import households from '../modules/Households/reducer'
 import members from '../modules/Members/reducer'
