@@ -2,6 +2,7 @@ import ApiService from '../../../services/Api'
 import { reset } from 'redux-form'
 import { fetchHouseholdsComplete } from '../Households/actions'
 import { fetchMealsComplete } from '../Meals/actions'
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 export const authenticating = () => ({ type: 'AUTHENTICATING' })
 
@@ -39,9 +40,11 @@ export const apiCall = () => {
 export const authenticate = () => {
   return dispatch => {
     dispatch(authenticating())
+    dispatch(showLoading())
     return ApiService.post(`/auth/refresh`).then(currentUser => {
       const { user, token } = currentUser
       localStorage.setItem('token', JSON.stringify(token))
+      dispatch(hideLoading())
       dispatch(setUser(user))
     })
   }
