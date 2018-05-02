@@ -35,11 +35,7 @@ class MealsContainer extends Component {
   }
 }
 
-export default connect(state => {
-  return {
-    meals: state.meals,
-  }
-})(MealsContainer)
+export default connect(({ meals }) => ({ meals }))(MealsContainer)
 
 let gridContainer = css({
   marginTop: '20px',
