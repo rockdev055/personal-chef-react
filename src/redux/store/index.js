@@ -6,7 +6,7 @@ import meals from '../modules/Meals/reducer'
 import error from '../modules/Errors/reducer'
 import { reducer as form } from 'redux-form'
 import middleware from '../../middleware'
-import { loadingBarReducer } from 'react-redux-loading-bar'
+import { loadingBarReducer: loadingBar } from 'react-redux-loading-bar'
 
 const rootReducer = combineReducers({
   auth,
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   meals,
   members,
   error,
-  loadingBar: loadingBarReducer,
+  loadingBar,
 })
 
 export default createStore(
