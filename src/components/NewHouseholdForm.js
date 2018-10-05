@@ -1,98 +1,105 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { css } from 'glamor'
+import styled from 'styled-components'
+
+export const StyledForm = styled.div`
+  ul {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    alignItems: center;
+    justifyContent: space-between;
+    marginBottom: 20px;
+  }
+  label {
+    flex: 1 0 120px;
+    max-width: 220px;
+  }
+  input {
+    flex: 1 0 220px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid gray;
+    :focus: {
+      outline: 'none';
+    }
+  }
+
+  button {
+    margin-left: auto;
+    padding: 8px 16px;
+    border: none;
+    background: #333;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    border-radius: 2px;
+  }
+`
 
 class NewHouseholdForm extends Component {
   render() {
     const { handleSubmit } = this.props
     return (
-      <form onSubmit={handleSubmit}>
-        <ul {...ul}>
-          <li {...styles}>
-            <label {...styles2} htmlFor="name">
-              Family Name
-            </label>
-            <Field {...styles3} name="name" component="input" type="text" />
-          </li>
-          <li {...styles}>
-            <label {...styles2} htmlFor="address">
-              Address
-            </label>
-            <Field {...styles3} name="address" component="input" type="text" />
-          </li>
-          <li {...styles}>
-            <label {...styles2} htmlFor="monthly_rate">
-              Potential Monthly Rate
-            </label>
-            <Field
-              {...styles3}
-              name="monthly_rate"
-              component="input"
-              type="text"
-            />
-          </li>
-          <li {...styles}>
-            <label {...styles2} htmlFor="client">
-              Client?
-            </label>
-            <Field
-              {...styles3}
-              name="client"
-              component="input"
-              type="checkbox"
-            />
-          </li>
-          <li {...styles}>
-            <button {...btnStyle} type="submit">
-              Create Lead
-            </button>
-          </li>
-        </ul>
-      </form>
+      <StyledForm>
+        <form onSubmit={handleSubmit}>
+          <ul>
+            <li>
+              <label htmlFor="name">Family Name</label>
+              <Field name="name" component="input" type="text" />
+            </li>
+            <li>
+              <label htmlFor="address">Address</label>
+              <Field name="address" component="input" type="text" />
+            </li>
+            <li>
+              <label htmlFor="monthly_rate">Potential Monthly Rate</label>
+              <Field name="monthly_rate" component="input" type="text" />
+            </li>
+            <li>
+              <label htmlFor="client">Client?</label>
+              <Field name="client" component="input" type="checkbox" />
+            </li>
+            <li>
+              <button type="submit">Create Lead</button>
+            </li>
+          </ul>
+        </form>
+      </StyledForm>
     )
   }
 }
 
 export default reduxForm({
-  form: 'newHousehold',
+  form: 'newHousehold'
 })(NewHouseholdForm)
 
-const styles = css({
-  display: 'flex',
-  flexWrap: 'wrap',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  // maxWidth: '800px',
-  marginBottom: '20px',
-})
+// const styles = css({
+//   display: 'flex',
+//   flexWrap: 'wrap',
+//   alignItems: 'center',
+//   justifyContent: 'space-between',
+//   // maxWidth: '800px',
+//   marginBottom: '20px'
+// })
 
-const ul = css({
-  maxWidth: '800px',
-  margin: '0 auto',
-})
+// const ul = css({
+//   maxWidth: '800px',
+//   margin: '0 auto'
+// })
 
-const styles2 = css({
-  flex: '1 0 120px',
-  maxWidth: '220px',
-})
+// export const styles3 = css({
+//   flex: '1 0 220px',
+//   padding: '15px',
+//   borderRadius: '15px',
+//   border: '2px solid gray',
+//   ':focus': {
+//     outline: 'none'
+//   }
+// })
 
-export const styles3 = css({
-  flex: '1 0 220px',
-  padding: '15px',
-  borderRadius: '15px',
-  border: '2px solid gray',
-  ':focus': {
-    outline: 'none',
-  },
-})
-
-const btnStyle = css({
-  marginLeft: 'auto',
-  padding: '8px 16px',
-  border: 'none',
-  background: '#333',
-  color: '#f2f2f2',
-  textTransform: 'uppercase',
-  letterSpacing: '.09em',
-  borderRadius: '2px',
-})
+const btnStyle = css({})
