@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { css } from 'glamor'
 import styled from 'styled-components'
 
 export const StyledForm = styled.div`
@@ -77,29 +76,3 @@ class NewHouseholdForm extends Component {
 export default reduxForm({
   form: 'newHousehold'
 })(NewHouseholdForm)
-
-// const styles = css({
-//   display: 'flex',
-//   flexWrap: 'wrap',
-//   alignItems: 'center',
-//   justifyContent: 'space-between',
-//   // maxWidth: '800px',
-//   marginBottom: '20px'
-// })
-
-// const ul = css({
-//   maxWidth: '800px',
-//   margin: '0 auto'
-// })
-
-// export const styles3 = css({
-//   flex: '1 0 220px',
-//   padding: '15px',
-//   borderRadius: '15px',
-//   border: '2px solid gray',
-//   ':focus': {
-//     outline: 'none'
-//   }
-// })
-
-const btnStyle = css({})
