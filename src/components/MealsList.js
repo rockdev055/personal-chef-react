@@ -1,21 +1,24 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const MealsList = ({ meals }) => {
-  return (
-    <div>
-      <h1>All Meals</h1>
-      <ul>
-        {meals.map(m =>
-          <Link key={m.id} to={`/meals/${m.id}`}>
-            <h3 style={{ listStyleType: 'none' }}>
-              {m.name}
-            </h3>
-          </Link>
-        )}
-      </ul>
-    </div>
-  )
-}
+const MealsList = ({ meals }) => (
+  <div>
+    <h1>All Meals</h1>
+    <ul>
+      {meals.map(m => (
+        <Link key={m.id} to={`/meals/${m.id}`}>
+          <h3 style={{ listStyleType: 'none' }}>
+            {m.name}
+          </h3>
+        </Link>
+      ))}
+    </ul>
+  </div>
+);
 
-export default MealsList
+MealsList.propTypes = {
+  meals: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+export default MealsList;
