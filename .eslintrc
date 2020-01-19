@@ -7,8 +7,10 @@
       {
         "trailingComma": "es5",
         "singleQuote": true,
-        "printWidth": 120
+        "printWidth": 120,
+        "no-shadow": "off"
       }
-    ]
+    ],
+    "no-shadow": "off"
   }
 }
