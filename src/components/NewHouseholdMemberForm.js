@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { Form } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import PropTypes from 'prop-types';
+import { Form } from 'semantic-ui-react';
 
 class NewHouseholdMemberForm extends Component {
   render() {
-    const { handleSubmit } = this.props
+    const { handleSubmit } = this.props;
     return (
       <Form onSubmit={handleSubmit}>
         <Form.Field>
@@ -25,10 +26,14 @@ class NewHouseholdMemberForm extends Component {
         </Form.Field>
         <Form.Button primary>Create Member</Form.Button>
       </Form>
-    )
+    );
   }
 }
 
+NewHouseholdMemberForm.propTypes = {
+  handleSubmit: PropTypes.func,
+};
+
 export default reduxForm({
-  form: 'newHouseholdMember'
-})(NewHouseholdMemberForm)
+  form: 'newHouseholdMember',
+})(NewHouseholdMemberForm);

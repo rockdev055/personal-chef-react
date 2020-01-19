@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { StyledForm } from './NewHouseholdForm'
+import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import PropTypes from 'prop-types';
+import { StyledForm } from './NewHouseholdForm';
 
 class SignupForm extends Component {
   render() {
-    const { handleSubmit } = this.props
+    const { handleSubmit } = this.props;
 
     return (
       <StyledForm>
@@ -33,12 +34,14 @@ class SignupForm extends Component {
           </ul>
         </form>
       </StyledForm>
-    )
+    );
   }
 }
 
-SignupForm = reduxForm({
-  form: 'signup'
-})(SignupForm)
+SignupForm.propTypes = {
+  handleSubmit: PropTypes.func,
+};
 
-export default SignupForm
+export default reduxForm({
+  form: 'signup',
+})(SignupForm);

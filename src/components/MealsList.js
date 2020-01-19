@@ -8,9 +8,7 @@ const MealsList = ({ meals }) => (
     <ul>
       {meals.map(m => (
         <Link key={m.id} to={`/meals/${m.id}`}>
-          <h3 style={{ listStyleType: 'none' }}>
-            {m.name}
-          </h3>
+          <h3 style={{ listStyleType: 'none' }}>{m.name}</h3>
         </Link>
       ))}
     </ul>

@@ -1,13 +1,15 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Card, Container, Divider } from 'semantic-ui-react'
-import NewEngagementForm from './NewEngagementForm'
-import { createEngagement } from '../redux/modules/Engagements/actions'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Card, Container, Divider } from 'semantic-ui-react';
+import NewEngagementForm from './NewEngagementForm';
+import { createEngagement } from '../redux/modules/Engagements/actions';
 
 class NewEngagement extends Component {
   submit = values => {
-    this.props.createEngagement(this.props.id, values.format())
-  }
+    const { createEngagement, id } = this.props;
+    createEngagement(id, values.format());
+  };
 
   render() {
     return (
@@ -20,8 +22,13 @@ class NewEngagement extends Component {
           <NewEngagementForm handleSubmit={this.submit} />
         </Card.Header>
       </div>
-    )
+    );
   }
 }
 
-export default connect(null, { createEngagement })(NewEngagement)
+NewEngagement.propTypes = {
+  createEngagement: PropTypes.func,
+  id: PropTypes.number,
+};
+
+export default connect(null, { createEngagement })(NewEngagement);

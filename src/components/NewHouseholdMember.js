@@ -1,15 +1,16 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import NewHouseholdMemberForm from './NewHouseholdMemberForm'
-import { Card, Container } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Card, Container } from 'semantic-ui-react';
+import NewHouseholdMemberForm from './NewHouseholdMemberForm';
 
-import { createHouseholdMember } from '../redux/modules/Members/actions'
+import { createHouseholdMember } from '../redux/modules/Members/actions';
 
 class NewHouseholdMember extends Component {
-
-  submit = (values) => {
-    this.props.createHouseholdMember(values, this.props.id)
-  }
+  submit = values => {
+    const { createHouseholdMember, id } = this.props;
+    createHouseholdMember(values, id);
+  };
 
   render() {
     return (
@@ -21,8 +22,13 @@ class NewHouseholdMember extends Component {
         </Card.Header>
         <NewHouseholdMemberForm onSubmit={this.submit} />
       </div>
-    )
+    );
   }
 }
 
-export default connect(null, { createHouseholdMember })(NewHouseholdMember)
+NewHouseholdMember.propTypes = {
+  createHouseholdMember: PropTypes.func,
+  id: PropTypes.number,
+};
+
+export default connect(null, { createHouseholdMember })(NewHouseholdMember);

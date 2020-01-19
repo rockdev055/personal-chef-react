@@ -1,16 +1,20 @@
-import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { StyledForm } from './NewHouseholdForm'
+import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import PropTypes from 'prop-types';
+import { StyledForm } from './NewHouseholdForm';
 
 class LoginForm extends Component {
   render() {
+    const { handleSubmit } = this.props;
     return (
       <StyledForm>
-        <form onSubmit={this.props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <ul>
             <li>
-              <label htmlFor="email">Email: </label>
-              <Field name="email" component="input" type="text" />
+              <label htmlFor="email">
+                Email:
+                <Field name="email" id="email" component="input" type="text" />
+              </label>
             </li>
             <li>
               <label htmlFor="password">Password: </label>
@@ -23,10 +27,14 @@ class LoginForm extends Component {
           </ul>
         </form>
       </StyledForm>
-    )
+    );
   }
 }
 
+LoginForm.propTypes = {
+  handleSubmit: PropTypes.func,
+};
+
 export default reduxForm({
-  form: 'signup'
-})(LoginForm)
+  form: 'signup',
+})(LoginForm);

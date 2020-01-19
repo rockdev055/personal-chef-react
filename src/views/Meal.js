@@ -1,29 +1,29 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
-const Meal = props => {
-  return props.meal
-    ? <div>
-        <h1>Meal Card</h1>
-        <h3>
-          {props.meal.name}
-        </h3>
-        <p>
-          <a target="_blank" href={props.meal.url}>
-            {props.meal.url}
-          </a>
-        </p>
-        <h2>Notes</h2>
-        {props.meal.notes}
-      </div>
-    : null
-}
+const Meal = ({ meal }) =>
+  meal ? (
+    <div>
+      <h1>Meal Card</h1>
+      <h3>{meal.name}</h3>
+      <p>
+        <a target="_blank" rel="noopener noreferrer" href={meal.url}>
+          {meal.url}
+        </a>
+      </p>
+      <h2>Notes</h2>
+      {meal.notes}
+    </div>
+  ) : null;
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    meal: state.meals.find(m => m.id === +ownProps.match.params.id),
-  }
-}
+Meal.propTypes = {
+  meal: PropTypes.object,
+};
 
-export default withRouter(connect(mapStateToProps)(Meal))
+const mapStateToProps = (state, ownProps) => ({
+  meal: state.meals.find(m => m.id === +ownProps.match.params.id),
+});
+
+export default withRouter(connect(mapStateToProps)(Meal));

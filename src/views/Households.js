@@ -1,9 +1,16 @@
-import React from 'react'
-import Household from './Household'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Households = (props) => {
-  const { households } = props
-  return (<div>{households.map(household => <p key={household.id}>{household.name}</p>)}</div>)
-}
+const Households = ({ households }) => (
+  <div>
+    {households.map(household => (
+      <p key={household.id}>{household.name}</p>
+    ))}
+  </div>
+);
 
-export default Households
+Households.propTypes = {
+  households: PropTypes.array,
+};
+
+export default Households;

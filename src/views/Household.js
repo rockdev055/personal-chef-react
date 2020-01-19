@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import numeral from 'numeral';
-import {
-  Card,
-  Grid,
-  Divider,
-  Container,
-  Select,
-  Form,
-} from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { Card, Grid, Divider, Container, Select, Form } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import format from 'date-fns/format';
 import styled from 'styled-components';
@@ -34,8 +28,9 @@ class Household extends Component {
   }
 
   handleOnChange = id => {
-    const householdId = parseInt(this.props.match.params.id, 10);
-    this.props.createHouseholdMeal(id, householdId);
+    const { match, createHouseholdMeal } = this.props;
+    const householdId = parseInt(match.params.id, 10);
+    createHouseholdMeal(id, householdId);
   };
 
   onSelectChange = (e, { value }) => {
@@ -45,20 +40,18 @@ class Household extends Component {
   };
 
   handleOnAddMeal = household => {
-    if (!household.engagement.meal_ids.includes(this.state.mealId)) {
-      this.props.createEngagementMeal(
-        household.engagement.id,
-        this.state.mealId,
-        household.id
-      );
+    const { createEngagementMeal } = this.props;
+    const { mealId } = this.state;
+    if (!household.engagement.meal_ids.includes(mealId)) {
+      createEngagementMeal(household.engagement.id, mealId, household.id);
     }
   };
 
   render() {
-    const { households, members } = this.props;
-    const id = parseInt(this.props.match.params.id, 10);
+    const { households, members, match, meals } = this.props;
+    const id = parseInt(match.params.id, 10);
     const household = households.find(h => h.id === id);
-    const mealOptions = this.props.meals.map(meal => ({
+    const mealOptions = meals.map(meal => ({
       key: `${meal.name.toLowerCase()}-${meal.id}`,
       text: meal.name,
       value: meal.id,
@@ -87,11 +80,7 @@ class Household extends Component {
                   {members.map(m => (
                     <div key={m.id}>
                       <h3>
-                        <Link
-                          to={`/households/clients/${household.id}/members/${m.id}`}
-                        >
-                          {m.first_name}
-                        </Link>
+                        <Link to={`/households/clients/${household.id}/members/${m.id}`}>{m.first_name}</Link>
                       </h3>
                     </div>
                   ))}
@@ -106,29 +95,16 @@ class Household extends Component {
                   {household.engagement ? (
                     <div>
                       Date:
-                      {format(
-                        new Date(household.engagement.date),
-                        'MMMM Do, YYYY'
-                      )}
+                      {format(new Date(household.engagement.date), 'MMMM Do, YYYY')}
                       <Divider />
                       <styleInput>
-                        <Select
-                          onChange={this.onSelectChange}
-                          placeholder="Add a meal"
-                          options={mealOptions}
-                        />
+                        <Select onChange={this.onSelectChange} placeholder="Add a meal" options={mealOptions} />
                         <br />
-                        <Form.Button
-                          onClick={() => this.handleOnAddMeal(household)}
-                        >
-                          Add
-                        </Form.Button>
+                        <Form.Button onClick={() => this.handleOnAddMeal(household)}>Add</Form.Button>
                       </styleInput>
                       <Divider />
                       <h3>Meals for this Cook Date</h3>
-                      <EngagementMeals
-                        mealIds={household.engagement.meal_ids}
-                      />
+                      <EngagementMeals mealIds={household.engagement.meal_ids} />
                     </div>
                   ) : (
                     <div>
@@ -180,6 +156,15 @@ class Household extends Component {
     return null;
   }
 }
+
+Household.propTypes = {
+  createHouseholdMeal: PropTypes.func,
+  createEngagementMeal: PropTypes.func,
+  meals: PropTypes.array,
+  members: PropTypes.array,
+  households: PropTypes.array,
+  match: PropTypes.object,
+};
 
 export default connect(
   (state, ownProps) => {

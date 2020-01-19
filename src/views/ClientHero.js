@@ -1,3 +1,5 @@
-import React from 'react'
+import React from 'react';
 
-export default () => <h1>Select Clients or Leads</h1>
+const ClientHero = () => <h1>Select Clients or Leads</h1>;
+
+export default ClientHero;

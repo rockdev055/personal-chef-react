@@ -1,11 +1,19 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import NewMealForm from './NewMealForm'
-import { createMeal } from '../redux/modules/Meals/actions'
-import { css } from 'glamor'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { css } from 'glamor';
+import NewMealForm from './NewMealForm';
+import { createMeal } from '../redux/modules/Meals/actions';
+
+const h2 = css({
+  textAlign: 'center',
+});
 
 class NewMeal extends Component {
-  submit = values => this.props.createMeal(values, this.props.history)
+  submit = values => {
+    const { createMeal, history } = this.props;
+    createMeal(values, history);
+  };
 
   render() {
     return (
@@ -13,12 +21,13 @@ class NewMeal extends Component {
         <h2>Create a New Meal</h2>
         <NewMealForm onSubmit={this.submit} />
       </div>
-    )
+    );
   }
 }
 
-export default connect(null, { createMeal })(NewMeal)
+NewMeal.propTypes = {
+  createMeal: PropTypes.func,
+  history: PropTypes.object,
+};
 
-let h2 = css({
-  textAlign: 'center',
-})
+export default connect(null, { createMeal })(NewMeal);

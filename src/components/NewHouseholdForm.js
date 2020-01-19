@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
-import styled from 'styled-components'
+import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 export const StyledForm = styled.div`
   ul {
@@ -10,9 +11,9 @@ export const StyledForm = styled.div`
   li {
     display: flex;
     flex-wrap: wrap;
-    alignItems: center;
-    justifyContent: space-between;
-    marginBottom: 20px;
+    alignitems: center;
+    justifycontent: space-between;
+    marginbottom: 20px;
   }
   label {
     flex: 1 0 120px;
@@ -35,14 +36,14 @@ export const StyledForm = styled.div`
     background: #333;
     color: #f2f2f2;
     text-transform: uppercase;
-    letter-spacing: .09em;
+    letter-spacing: 0.09em;
     border-radius: 2px;
   }
-`
+`;
 
 class NewHouseholdForm extends Component {
   render() {
-    const { handleSubmit } = this.props
+    const { handleSubmit } = this.props;
     return (
       <StyledForm>
         <form onSubmit={handleSubmit}>
@@ -69,10 +70,14 @@ class NewHouseholdForm extends Component {
           </ul>
         </form>
       </StyledForm>
-    )
+    );
   }
 }
 
+NewHouseholdForm.propTypes = {
+  handleSubmit: PropTypes.func,
+};
+
 export default reduxForm({
-  form: 'newHousehold'
-})(NewHouseholdForm)
+  form: 'newHousehold',
+})(NewHouseholdForm);
