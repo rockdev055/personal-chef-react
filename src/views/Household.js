@@ -1,38 +1,48 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import numeral from 'numeral'
-import { createHouseholdMeal } from '../redux/modules/HouseholdMeals/actions'
-import { createEngagementMeal } from '../redux/modules/Engagements/actions'
-import NewHouseholdMember from '../components/NewHouseholdMember'
-import NewEngagement from '../components/NewEngagement'
-import EngagementMeals from './EngagementMeals'
-import { Card, Grid, Divider, Container, Select, Form } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
-import HouseholdNotes from '../components/HouseholdNotes'
-import NewNote from '../components/NewNote'
-import format from 'date-fns/format'
-import styled from 'styled-components'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import numeral from 'numeral';
+import {
+  Card,
+  Grid,
+  Divider,
+  Container,
+  Select,
+  Form,
+} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import format from 'date-fns/format';
+import styled from 'styled-components';
+import { createHouseholdMeal } from '../redux/modules/HouseholdMeals/actions';
+import { createEngagementMeal } from '../redux/modules/Engagements/actions';
+import NewHouseholdMember from '../components/NewHouseholdMember';
+import NewEngagement from '../components/NewEngagement';
+import EngagementMeals from './EngagementMeals';
+import HouseholdNotes from '../components/HouseholdNotes';
+import NewNote from '../components/NewNote';
 
-const styleInput = styled.div`display: flex;`
+const styleInput = styled.div`
+  display: flex;
+`;
 
 class Household extends Component {
   constructor() {
-    super()
+    super();
 
     this.state = {
       mealId: null,
-    }
+    };
   }
+
   handleOnChange = id => {
-    const householdId = parseInt(this.props.match.params.id, 10)
-    this.props.createHouseholdMeal(id, householdId)
-  }
+    const householdId = parseInt(this.props.match.params.id, 10);
+    this.props.createHouseholdMeal(id, householdId);
+  };
 
   onSelectChange = (e, { value }) => {
     this.setState({
       mealId: value,
-    })
-  }
+    });
+  };
 
   handleOnAddMeal = household => {
     if (!household.engagement.meal_ids.includes(this.state.mealId)) {
@@ -40,19 +50,19 @@ class Household extends Component {
         household.engagement.id,
         this.state.mealId,
         household.id
-      )
+      );
     }
-  }
+  };
 
   render() {
-    const { households, members } = this.props
-    const id = parseInt(this.props.match.params.id, 10)
-    const household = households.find(h => h.id === id)
+    const { households, members } = this.props;
+    const id = parseInt(this.props.match.params.id, 10);
+    const household = households.find(h => h.id === id);
     const mealOptions = this.props.meals.map(meal => ({
       key: `${meal.name.toLowerCase()}-${meal.id}`,
       text: meal.name,
       value: meal.id,
-    }))
+    }));
 
     if (household) {
       return (
@@ -62,17 +72,11 @@ class Household extends Component {
               <Card centered raised>
                 <Card.Content>
                   <Card.Header>
-                    <h3>
-                      {household.name} Family
-                    </h3>
+                    <h3>{household.name} Family</h3>
                   </Card.Header>
                   <Divider />
-                  <p>
-                    {household.address}
-                  </p>
-                  <p>
-                    {numeral(household.monthly_rate).format('$0,0.00')}
-                  </p>
+                  <p>{household.address}</p>
+                  <p>{numeral(household.monthly_rate).format('$0,0.00')}</p>
                 </Card.Content>
               </Card>
             </Grid.Column>
@@ -80,19 +84,17 @@ class Household extends Component {
               <Card centered raised>
                 <Card.Content>
                   <h2>Members</h2>
-                  {members.map(m => {
-                    return (
-                      <div key={m.id}>
-                        <h3>
-                          <Link
-                            to={`/households/clients/${household.id}/members/${m.id}`}
-                          >
-                            {m.first_name}
-                          </Link>
-                        </h3>
-                      </div>
-                    )
-                  })}
+                  {members.map(m => (
+                    <div key={m.id}>
+                      <h3>
+                        <Link
+                          to={`/households/clients/${household.id}/members/${m.id}`}
+                        >
+                          {m.first_name}
+                        </Link>
+                      </h3>
+                    </div>
+                  ))}
                 </Card.Content>
               </Card>
             </Grid.Column>
@@ -101,37 +103,39 @@ class Household extends Component {
                 <Card.Content>
                   <Card.Header>Next Cook Date</Card.Header>
                   <Divider />
-                  {household.engagement
-                    ? <div>
-                        Date:
-                        {format(
-                          new Date(household.engagement.date),
-                          'MMMM Do, YYYY'
-                        )}
-                        <Divider />
-                        <styleInput>
-                          <Select
-                            onChange={this.onSelectChange}
-                            placeholder="Add a meal"
-                            options={mealOptions}
-                          />
-                          <br />
-                          <Form.Button
-                            onClick={() => this.handleOnAddMeal(household)}
-                          >
-                            Add
-                          </Form.Button>
-                        </styleInput>
-                        <Divider />
-                        <h3>Meals for this Cook Date</h3>
-                        <EngagementMeals
-                          mealIds={household.engagement.meal_ids}
+                  {household.engagement ? (
+                    <div>
+                      Date:
+                      {format(
+                        new Date(household.engagement.date),
+                        'MMMM Do, YYYY'
+                      )}
+                      <Divider />
+                      <styleInput>
+                        <Select
+                          onChange={this.onSelectChange}
+                          placeholder="Add a meal"
+                          options={mealOptions}
                         />
-                      </div>
-                    : <div>
                         <br />
-                        <p>No Upcoming Cook Date</p>
-                      </div>}
+                        <Form.Button
+                          onClick={() => this.handleOnAddMeal(household)}
+                        >
+                          Add
+                        </Form.Button>
+                      </styleInput>
+                      <Divider />
+                      <h3>Meals for this Cook Date</h3>
+                      <EngagementMeals
+                        mealIds={household.engagement.meal_ids}
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <br />
+                      <p>No Upcoming Cook Date</p>
+                    </div>
+                  )}
                 </Card.Content>
               </Card>
             </Grid.Column>
@@ -171,22 +175,21 @@ class Household extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      )
-    } else {
-      return null
+      );
     }
+    return null;
   }
 }
 
 export default connect(
   (state, ownProps) => {
-    const id = parseInt(ownProps.match.params.id, 10)
-    const members = state.members.filter(m => m.household_id === id)
+    const id = +ownProps.match.params.id;
+    const members = state.members.filter(m => m.household_id === id);
     return {
       households: state.households,
       meals: state.meals,
       members,
-    }
+    };
   },
   { createHouseholdMeal, createEngagementMeal }
-)(Household)
+)(Household);
