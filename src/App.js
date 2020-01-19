@@ -1,50 +1,52 @@
-import React, { Component } from 'react'
-import './App.css'
-import Nav from './components/Nav'
-import Home from './views/Home'
-import HouseholdsContainer from './containers/HouseholdsContainer'
-import Background from './images/pexels-photo-349609.jpeg'
-import { css } from 'glamor'
-import Signup from './components/Signup'
-import Login from './views/Login'
+import React, { Component } from 'react';
+import './App.css';
+import { css } from 'glamor';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Container } from 'semantic-ui-react';
+import Nav from './components/Nav';
+import Home from './views/Home';
+import HouseholdsContainer from './containers/HouseholdsContainer';
+import Background from './images/pexels-photo-349609.jpeg';
+import Signup from './components/Signup';
+import Login from './views/Login';
 import {
   authenticate,
   authenticationFailure,
   logout,
-} from './redux/modules/Auth/actions'
-import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Container } from 'semantic-ui-react'
-import NewHousehold from './components/NewHousehold'
-import MealsContainer from './containers/MealsContainer'
-import Loading from './components/Loading'
-import { fetchMeals } from './redux/modules/Meals/actions'
+} from './redux/modules/Auth/actions';
+import NewHousehold from './components/NewHousehold';
+import MealsContainer from './containers/MealsContainer';
+import Loading from './components/Loading';
+import { fetchMeals } from './redux/modules/Meals/actions';
 
 class App extends Component {
   constructor(props) {
-    super(props)
-    props.fetchMeals()
+    super(props);
+    props.fetchMeals();
   }
 
   componentDidMount() {
-    const token = localStorage.getItem('token')
-
+    const token = localStorage.getItem('token');
+    const { authenticate, authenticationFailure } = this.props;
     if (token) {
-      this.props.authenticate()
+      authenticate();
     } else {
-      this.props.authenticationFailure()
+      authenticationFailure();
     }
   }
 
   render() {
-    if (this.props.loading) {
-      return <Loading />
+    const { loading, logout } = this.props;
+    if (loading) {
+      return <Loading />;
     }
     return (
       <Router>
         <div>
           <Container text>
-            <Nav logout={this.props.logout} />
+            <Nav logout={logout} />
           </Container>
           <div {...rules}>
             <Switch>
@@ -58,28 +60,26 @@ class App extends Component {
           </div>
         </div>
       </Router>
-    )
+    );
   }
 }
 
 export default connect(
-  state => {
-    return {
-      loading: state.auth.loading,
-    }
-  },
+  state => ({
+    loading: state.auth.loading,
+  }),
   {
     authenticate,
     authenticationFailure,
     logout,
     fetchMeals,
   }
-)(App)
+)(App);
 
-let rules = css({
+const rules = css({
   width: '100%',
   height: 'auto',
-  position: 'fixed',
+  // position: 'fixed',
   top: 55,
   left: 0,
   minHeight: '100%',
@@ -90,4 +90,4 @@ let rules = css({
   justifyContent: 'center',
   color: '#ecf0f1',
   textShadow: '1px 1px #777',
-})
+});
