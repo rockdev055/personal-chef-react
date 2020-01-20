@@ -64,20 +64,28 @@ class NewHouseholdForm extends Component {
         >
           <ul>
             <li>
-              <label htmlFor="name">Family Name</label>
-              <input name="name" onChange={this.onChange} type="text" id="name" value={name} />
+              <label htmlFor="name">
+                Family Name
+                <input name="name" onChange={this.onChange} type="text" id="name" value={name} />
+              </label>
             </li>
             <li>
-              <label htmlFor="address">Address</label>
-              <input name="address" type="text" value={address} onChange={this.onChange} />
+              <label htmlFor="address">
+                Address
+                <input name="address" id="address" type="text" value={address} onChange={this.onChange} />
+              </label>
             </li>
             <li>
-              <label htmlFor="monthly_rate">Potential Monthly Rate</label>
-              <input name="monthly_rate" type="text" value={monthlyRate} onChange={this.onChange} />
+              <label htmlFor="monthly_rate">
+                Potential Monthly Rate
+                <input name="monthly_rate" id="monthly_rate" type="text" value={monthlyRate} onChange={this.onChange} />
+              </label>
             </li>
             <li>
-              <label htmlFor="client">Client?</label>
-              <input name="client" type="checkbox" checked={client} onChange={this.onChange} />
+              <label htmlFor="client">
+                Client?
+                <input name="client" id="client" type="checkbox" checked={client} onChange={this.onChange} />
+              </label>
             </li>
             <li>
               <button type="submit">Create Lead</button>
