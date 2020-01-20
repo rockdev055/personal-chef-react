@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NewHouseholdForm from './NewHouseholdForm';
 
-import { createHousehold } from '../redux/modules/Households/actions';
+import { createHousehold } from '../../redux/modules/Households/actions';
 
 class NewHousehold extends Component {
   submit = values => {
@@ -14,7 +14,7 @@ class NewHousehold extends Component {
   render() {
     return (
       <div>
-        <h2>Create A New Family</h2>
+        <h2 data-testid="page-header">Create A New Family</h2>
         <NewHouseholdForm onSubmit={this.submit} />
       </div>
     );

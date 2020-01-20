@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NewHousehold /> component matches the snapshop 1`] = `
+<div
+  data-reactroot=""
+>
+  <h2
+    data-testid="page-header"
+  >
+    Create A New Family
+  </h2>
+  <div
+    class="sc-bdVaJa kwuwfT"
+  >
+    <form
+      data-testid="household-form"
+    >
+      <ul>
+        <li>
+          <label
+            for="name"
+          >
+            Family Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            value=""
+          />
+        </li>
+        <li>
+          <label
+            for="address"
+          >
+            Address
+          </label>
+          <input
+            type="text"
+            name="address"
+            value=""
+          />
+        </li>
+        <li>
+          <label
+            for="monthly_rate"
+          >
+            Potential Monthly Rate
+          </label>
+          <input
+            type="text"
+            name="monthly_rate"
+            value=""
+          />
+        </li>
+        <li>
+          <label
+            for="client"
+          >
+            Client?
+          </label>
+          <input
+            type="checkbox"
+            name="client"
+            value=""
+          />
+        </li>
+        <li>
+          <button
+            type="submit"
+          >
+            Create Lead
+          </button>
+        </li>
+      </ul>
+    </form>
+  </div>
+</div>
+`;

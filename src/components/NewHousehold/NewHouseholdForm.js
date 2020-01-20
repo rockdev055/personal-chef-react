@@ -46,7 +46,7 @@ class NewHouseholdForm extends Component {
     const { handleSubmit } = this.props;
     return (
       <StyledForm>
-        <form onSubmit={handleSubmit}>
+        <form data-testid="household-form" onSubmit={handleSubmit}>
           <ul>
             <li>
               <label htmlFor="name">Family Name</label>
