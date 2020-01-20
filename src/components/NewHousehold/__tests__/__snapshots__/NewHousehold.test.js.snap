@@ -20,49 +20,60 @@ exports[`<NewHousehold /> component matches the snapshop 1`] = `
           <label
             for="name"
           >
+            <!-- react-text: 8 -->
             Family Name
+            <!-- /react-text -->
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value=""
+            />
           </label>
-          <input
-            type="text"
-            name="name"
-            value=""
-          />
         </li>
         <li>
           <label
             for="address"
           >
+            <!-- react-text: 12 -->
             Address
+            <!-- /react-text -->
+            <input
+              type="text"
+              name="address"
+              id="address"
+              value=""
+            />
           </label>
-          <input
-            type="text"
-            name="address"
-            value=""
-          />
         </li>
         <li>
           <label
             for="monthly_rate"
           >
+            <!-- react-text: 16 -->
             Potential Monthly Rate
+            <!-- /react-text -->
+            <input
+              type="text"
+              name="monthly_rate"
+              id="monthly_rate"
+              value=""
+            />
           </label>
-          <input
-            type="text"
-            name="monthly_rate"
-            value=""
-          />
         </li>
         <li>
           <label
             for="client"
           >
+            <!-- react-text: 20 -->
             Client?
+            <!-- /react-text -->
+            <input
+              type="checkbox"
+              name="client"
+              id="client"
+            />
           </label>
-          <input
-            type="checkbox"
-            name="client"
-            value=""
-          />
         </li>
         <li>
           <button
