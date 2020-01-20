@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
-import { StyledForm } from './NewHouseholdForm';
+import { StyledForm } from './NewHousehold/NewHouseholdForm';
 
 class LoginForm extends Component {
   render() {
