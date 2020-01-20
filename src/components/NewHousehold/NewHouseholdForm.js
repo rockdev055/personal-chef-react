@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -42,27 +41,37 @@ export const StyledForm = styled.div`
 `;
 
 class NewHouseholdForm extends Component {
+  state = { name: '', client: false, address: '', monthly_rate: '' };
+
+  onChange = e => {
+    const { target } = e;
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({ [name]: value });
+  };
+
   render() {
     const { handleSubmit } = this.props;
+    const { name, address, monthly_rate: monthlyRate, client } = this.state;
     return (
       <StyledForm>
-        <form data-testid="household-form" onSubmit={handleSubmit}>
+        <form data-testid="household-form" onSubmit={() => handleSubmit(this.state)}>
           <ul>
             <li>
               <label htmlFor="name">Family Name</label>
-              <Field name="name" component="input" type="text" />
+              <input name="name" onChange={this.onChange} type="text" id="name" value={name} />
             </li>
             <li>
               <label htmlFor="address">Address</label>
-              <Field name="address" component="input" type="text" />
+              <input name="address" type="text" value={address} onChange={this.onChange} />
             </li>
             <li>
               <label htmlFor="monthly_rate">Potential Monthly Rate</label>
-              <Field name="monthly_rate" component="input" type="text" />
+              <input name="monthly_rate" type="text" value={monthlyRate} onChange={this.onChange} />
             </li>
             <li>
               <label htmlFor="client">Client?</label>
-              <Field name="client" component="input" type="checkbox" />
+              <input name="client" type="checkbox" checked={client} onChange={this.onChange} />
             </li>
             <li>
               <button type="submit">Create Lead</button>
@@ -78,6 +87,4 @@ NewHouseholdForm.propTypes = {
   handleSubmit: PropTypes.func,
 };
 
-export default reduxForm({
-  form: 'newHousehold',
-})(NewHouseholdForm);
+export default NewHouseholdForm;
