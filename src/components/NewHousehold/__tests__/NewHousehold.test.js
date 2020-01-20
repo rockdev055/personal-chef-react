@@ -36,4 +36,14 @@ describe('<NewHousehold /> component', () => {
 
     expect(getByTestId('household-form')).toBeTruthy();
   });
+
+  it('submits the form correctly', () => {
+    const { getByText } = render(
+      <Provider store={store}>
+        <NewHousehold />
+      </Provider>
+    );
+
+    fireEvent.click(getByText('Create Lead'));
+  });
 });
