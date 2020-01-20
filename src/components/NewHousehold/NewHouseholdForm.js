@@ -51,11 +51,17 @@ class NewHouseholdForm extends Component {
   };
 
   render() {
-    const { handleSubmit } = this.props;
+    const { onSubmit } = this.props;
     const { name, address, monthly_rate: monthlyRate, client } = this.state;
     return (
       <StyledForm>
-        <form data-testid="household-form" onSubmit={() => handleSubmit(this.state)}>
+        <form
+          data-testid="household-form"
+          onSubmit={e => {
+            e.preventDefault();
+            onSubmit(this.state);
+          }}
+        >
           <ul>
             <li>
               <label htmlFor="name">Family Name</label>
@@ -84,7 +90,7 @@ class NewHouseholdForm extends Component {
 }
 
 NewHouseholdForm.propTypes = {
-  handleSubmit: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
 export default NewHouseholdForm;
