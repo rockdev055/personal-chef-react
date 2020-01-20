@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MealsContainer /> matches the snapshot 1`] = `
+<div
+  data-reactroot=""
+  class="ui container"
+>
+  <div
+    data-css-pt6crs=""
+  >
+    <div
+      data-css-4ifvyl=""
+    >
+      <h1>
+        All Meals
+      </h1>
+      <ul />
+    </div>
+    <div
+      data-css-1jxg4nl=""
+    >
+      <!-- react-empty: 7 -->
+    </div>
+  </div>
+</div>
+`;

@@ -4,8 +4,8 @@ import { Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { Link, Route, Switch } from 'react-router-dom';
 import { css } from 'glamor';
-import NewMeal from '../components/NewMeal';
-import Meal from '../views/Meal';
+import NewMeal from '../../components/NewMeal';
+import Meal from '../../views/Meal';
 
 const gridContainer = css({
   marginTop: '20px',
