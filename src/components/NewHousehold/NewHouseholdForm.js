@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Button, Form, Segment, Checkbox } from 'semantic-ui-react';
+
 import styled from 'styled-components';
 
 export const StyledForm = styled.div`
@@ -44,6 +46,7 @@ class NewHouseholdForm extends Component {
   state = { name: '', client: false, address: '', monthly_rate: '' };
 
   onChange = e => {
+    console.log(e.target.type);
     const { target } = e;
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -54,45 +57,55 @@ class NewHouseholdForm extends Component {
     const { onSubmit } = this.props;
     const { name, address, monthly_rate: monthlyRate, client } = this.state;
     return (
-      <StyledForm>
-        <form
-          data-testid="household-form"
-          onSubmit={e => {
-            e.preventDefault();
-            onSubmit(this.state);
-          }}
-        >
-          <ul>
-            <li>
-              <label htmlFor="name">
-                Family Name
-                <input name="name" onChange={this.onChange} type="text" id="name" value={name} />
-              </label>
-            </li>
-            <li>
-              <label htmlFor="address">
-                Address
-                <input name="address" id="address" type="text" value={address} onChange={this.onChange} />
-              </label>
-            </li>
-            <li>
-              <label htmlFor="monthly_rate">
-                Potential Monthly Rate
-                <input name="monthly_rate" id="monthly_rate" type="text" value={monthlyRate} onChange={this.onChange} />
-              </label>
-            </li>
-            <li>
-              <label htmlFor="client">
-                Client?
-                <input name="client" id="client" type="checkbox" checked={client} onChange={this.onChange} />
-              </label>
-            </li>
-            <li>
-              <button type="submit">Create Lead</button>
-            </li>
-          </ul>
-        </form>
-      </StyledForm>
+      <Form
+        data-testid="household-form"
+        size="large"
+        onSubmit={e => {
+          e.preventDefault();
+          onSubmit(this.state);
+        }}
+      >
+        <Segment stacked>
+          <Form.Input
+            placeholder="Family Name"
+            name="name"
+            onChange={this.onChange}
+            type="text"
+            id="name"
+            value={name}
+          />
+          <Form.Input
+            name="address"
+            placeholder="Address"
+            id="address"
+            type="text"
+            value={address}
+            onChange={this.onChange}
+          />
+          <Form.Input
+            name="monthly_rate"
+            placeholder="Potential Monthly Rate"
+            id="monthly_rate"
+            type="text"
+            value={monthlyRate}
+            onChange={this.onChange}
+          />
+          <Form.Field>
+            <label htmlFor="client">Client?</label>
+            <input
+              name="client"
+              id="client"
+              textAlign="center"
+              type="checkbox"
+              checked={client}
+              onChange={this.onChange}
+            />
+          </Form.Field>
+          <Button fluid size="large">
+            Create Lead
+          </Button>
+        </Segment>
+      </Form>
     );
   }
 }
