@@ -1,40 +1,60 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
-import { StyledForm } from './NewHousehold/NewHouseholdForm';
+import { Button, Form, Segment } from 'semantic-ui-react';
 
 class LoginForm extends Component {
+  state = {
+    email: '',
+    password: '',
+  };
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   render() {
-    const { handleSubmit } = this.props;
+    const { onSubmit } = this.props;
+    const { email, password } = this.state;
     return (
-      <StyledForm>
-        <form onSubmit={handleSubmit}>
-          <ul>
-            <li>
-              <label htmlFor="email">
-                Email:
-                <Field name="email" id="email" component="input" type="text" />
-              </label>
-            </li>
-            <li>
-              <label htmlFor="password">Password: </label>
-              <Field name="password" component="input" type="password" />
-            </li>
-            <br />
-            <li>
-              <button type="submit">Login</button>
-            </li>
-          </ul>
-        </form>
-      </StyledForm>
+      <Form
+        size="large"
+        onSubmit={e => {
+          e.preventDefault();
+          onSubmit(this.state);
+        }}
+      >
+        <Segment stacked>
+          <Form.Input
+            fluid
+            onChange={this.onChange}
+            icon="user"
+            name="email"
+            iconPosition="left"
+            placeholder="E-mail address"
+            value={email}
+          />
+          <Form.Input
+            name="password"
+            onChange={this.onChange}
+            fluid
+            icon="lock"
+            iconPosition="left"
+            placeholder="Password"
+            type="password"
+            value={password}
+          />
+
+          <Button fluid size="large">
+            Login
+          </Button>
+        </Segment>
+      </Form>
     );
   }
 }
 
 LoginForm.propTypes = {
-  handleSubmit: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
-export default reduxForm({
-  form: 'signup',
-})(LoginForm);
+export default LoginForm;
