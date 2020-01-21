@@ -2,7 +2,7 @@ import React from 'react';
 import { cleanup, render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import MealsContainer from '..';
+import MealsContainer from '../index';
 import store from '../../../redux/store';
 
 afterEach(cleanup);
