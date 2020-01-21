@@ -18,7 +18,7 @@ class Nav extends Component {
   render() {
     const { isAuthenticated } = this.props;
     return (
-      <Menu secondary {...rules}>
+      <Menu size="massive" secondary {...rules}>
         <Menu.Item name="home" as={Link} to="/">
           Home
         </Menu.Item>
