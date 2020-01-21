@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { css } from 'glamor';
+import styled  from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -17,21 +18,37 @@ import MealsContainer from './containers/MealsContainer';
 import Loading from './components/Loading';
 import { fetchMeals } from './redux/modules/Meals/actions';
 
-const rules = css({
-  width: '100%',
-  height: 'auto',
-  // position: 'fixed',
-  top: 55,
-  left: 0,
-  minHeight: '100%',
-  minWidth: '1024px',
-  background: `url(${Background}) no-repeat center center fixed`,
-  backgroundSize: 'cover',
-  display: 'flex',
-  justifyContent: 'center',
-  color: '#ecf0f1',
-  textShadow: '1px 1px #777',
-});
+// const rules = css({
+//   width: '100%',
+//   height: 'auto',
+//   // position: 'fixed',
+//   top: 55,
+//   left: 0,
+//   minHeight: '100%',
+//   minWidth: '1024px',
+//   background: `url(${Background}) no-repeat center center fixed`,
+//   backgroundSize: 'cover',
+//   display: 'flex',
+//   justifyContent: 'center',
+//   color: '#ecf0f1',
+//   textShadow: '1px 1px #777',
+// });
+
+const BackgroundImage = styled.div`
+  min-height: 100%;
+  min-width: 1024px;
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.7;
+  background: url(${Background}) no-repeat center center fixed;
+  background-size: cover;
+`
 
 class App extends Component {
   constructor(props) {
@@ -57,10 +74,11 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <BackgroundImage></BackgroundImage>
           <Container text>
             <Nav logout={logout} />
           </Container>
-          <div {...rules}>
+          <div>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/households/new" component={NewHousehold} />
