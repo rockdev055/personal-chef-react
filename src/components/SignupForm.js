@@ -1,47 +1,82 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Button, Form, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { StyledForm } from './NewHousehold/NewHouseholdForm';
 
 class SignupForm extends Component {
-  render() {
-    const { handleSubmit } = this.props;
+  state = {
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+  };
 
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  render() {
+    const { onSubmit } = this.props;
+    const { first_name: firstName, last_name: lastName, email, password } = this.state;
     return (
-      <StyledForm>
-        <form onSubmit={handleSubmit}>
-          <ul>
-            <li>
-              <label htmlFor="first_name">First Name: </label>
-              <Field name="first_name" component="input" type="text" />
-            </li>
-            <li>
-              <label htmlFor="last_name">Last Name: </label>
-              <Field name="last_name" component="input" type="text" />
-            </li>
-            <li>
-              <label htmlFor="email">Email: </label>
-              <Field name="email" component="input" type="text" />
-            </li>
-            <li>
-              <label htmlFor="password">Password: </label>
-              <Field name="password" component="input" type="password" />
-            </li>
-            <br />
-            <li>
-              <button type="submit">Submit</button>
-            </li>
-          </ul>
-        </form>
-      </StyledForm>
+      <Form
+        size="large"
+        onSubmit={e => {
+          e.preventDefault();
+          onSubmit(this.state);
+        }}
+      >
+        <Segment stacked>
+          <Form.Input
+            fluid
+            onChange={this.onChange}
+            icon="user"
+            name="first_name"
+            iconPosition="left"
+            placeholder="First Name"
+            value={firstName}
+          />
+          <Form.Input
+            name="last_name"
+            onChange={this.onChange}
+            fluid
+            icon="user"
+            iconPosition="left"
+            placeholder="Last Name"
+            type="text"
+            value={lastName}
+          />
+          <Form.Input
+            name="email"
+            onChange={this.onChange}
+            fluid
+            icon="envelope"
+            iconPosition="left"
+            placeholder="Email"
+            type="text"
+            value={email}
+          />
+          <Form.Input
+            name="password"
+            onChange={this.onChange}
+            fluid
+            icon="lock"
+            iconPosition="left"
+            placeholder="Password"
+            type="password"
+            value={password}
+          />
+
+          <Button fluid size="large">
+            Signup
+          </Button>
+        </Segment>
+      </Form>
     );
   }
 }
 
 SignupForm.propTypes = {
-  handleSubmit: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
-export default reduxForm({
-  form: 'signup',
-})(SignupForm);
+export default SignupForm;

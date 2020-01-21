@@ -3,6 +3,7 @@ import { css } from 'glamor';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Container, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 const h1 = css({
   fontSize: '70px',
@@ -25,9 +26,11 @@ const Home = ({ authenticated, clients }) => (
         <div {...hero}>
           <h1 {...h1}>Personal Chef</h1>
           <p {...heroSub}>Keep track of your clients, meals, and schedule all in one place.</p>
-          <Button size="large" color="green">
-            Free Sign Up
-          </Button>
+          <Link to="/signup">
+            <Button size="large" color="green">
+              Free Sign Up
+            </Button>
+          </Link>
         </div>
       )}
     </div>
